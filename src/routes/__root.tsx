@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { LanguageProvider, useLanguage, LANGS } from "../lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -125,30 +126,62 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+      <LanguageProvider>
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
 
+function LanguageSwitcher() {
+  const { lang, setLang } = useLanguage();
+
+  return (
+    <div className="flex items-center gap-0.5 rounded-md border border-border bg-background p-0.5">
+      {LANGS.map((l) => (
+        <button
+          key={l.code}
+          type="button"
+          onClick={() => setLang(l.code)}
+          aria-pressed={lang === l.code}
+          aria-label={`Sprache: ${l.label}`}
+          className={
+            lang === l.code
+              ? "rounded px-2 py-1 text-xs font-semibold bg-primary text-primary-foreground"
+              : "rounded px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+          }
+        >
+          {l.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function Header() {
+  const { t } = useLanguage();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container-vdt flex h-16 items-center justify-between">
+      <div className="container-vdt flex h-16 items-center justify-between gap-2">
         <Link to="/" className="flex items-center gap-2">
           <span className="font-heading text-xl font-bold text-primary">VDT</span>
           <span className="hidden text-sm font-medium text-foreground sm:inline">Touristik GmbH</span>
         </Link>
-        <nav className="flex items-center gap-1 sm:gap-4">
-          <NavLink to="/">Startseite</NavLink>
-          <NavLink to="/angebote">Angebote</NavLink>
-          <NavLink to="/kontakt">Kontakt</NavLink>
-        </nav>
+        <div className="flex items-center gap-2 sm:gap-4">
+          <nav className="flex items-center gap-1 sm:gap-3">
+            <NavLink to="/">{t.nav.home}</NavLink>
+            <NavLink to="/angebote">{t.nav.flights}</NavLink>
+            <NavLink to="/kontakt">{t.nav.contact}</NavLink>
+          </nav>
+          <LanguageSwitcher />
+        </div>
       </div>
     </header>
   );
@@ -159,7 +192,7 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
     <Link
       to={to}
       activeProps={{ className: "text-primary font-semibold" }}
-      className="rounded-md px-2 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:px-3"
+      className="rounded-md px-1.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:px-2"
     >
       {children}
     </Link>
@@ -167,44 +200,46 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
 }
 
 function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-border bg-vdt-blue-dark text-primary-foreground">
       <div className="container-vdt py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <h3 className="font-heading text-lg font-semibold">VDT Touristik GmbH</h3>
-            <p className="mt-2 text-sm text-primary-foreground/80">
-              Ihr Reisebüro in Berlin mit persönlicher Beratung, Flugtickets und Reiseangeboten.
-            </p>
-            <p className="mt-4 text-xs text-primary-foreground/60">IATA Accredited Agent</p>
+            <p className="mt-2 text-sm text-primary-foreground/80">{t.brand.tagline}</p>
+            <p className="mt-4 text-xs text-primary-foreground/60">{t.common.iata}</p>
           </div>
           <div>
-            <h3 className="font-heading text-lg font-semibold">Kontakt</h3>
+            <h3 className="font-heading text-lg font-semibold">{t.footer.contact}</h3>
             <address className="mt-2 not-italic text-sm text-primary-foreground/80">
               <p>Rhinstraße 185</p>
               <p>13053 Berlin</p>
               <p className="mt-2">Tel.: 030 54 39 88 70</p>
-              <p>Mo–Fr: 9:00–17:00 Uhr</p>
+              <p>{t.footer.hours}</p>
             </address>
           </div>
           <div>
-            <h3 className="font-heading text-lg font-semibold">Rechtliches</h3>
+            <h3 className="font-heading text-lg font-semibold">{t.footer.legal}</h3>
             <ul className="mt-2 space-y-2 text-sm">
               <li>
                 <Link to="/impressum" className="text-primary-foreground/80 transition-colors hover:text-primary-foreground">
-                  Impressum
+                  {t.footer.imprint}
                 </Link>
               </li>
               <li>
                 <Link to="/datenschutz" className="text-primary-foreground/80 transition-colors hover:text-primary-foreground">
-                  Datenschutz
+                  {t.footer.privacy}
                 </Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="mt-8 border-t border-primary-foreground/10 pt-8 text-center text-xs text-primary-foreground/60">
-          <p>&copy; {new Date().getFullYear()} VDT Touristik GmbH Berlin. Alle Rechte vorbehalten.</p>
+          <p>
+            &copy; {new Date().getFullYear()} VDT Touristik GmbH Berlin. {t.footer.rights}
+          </p>
         </div>
       </div>
     </footer>
