@@ -17,7 +17,7 @@ export const Route = createFileRoute("/angebote")({
     ],
     links: [{ rel: "canonical", href: "/angebote" }],
   }),
-  component: FlightRoutesPage;
+  component: FlightRoutesPage,
 });
 
 function FlightRoutesPage() {
