@@ -30,11 +30,36 @@ function HomePage() {
     <>
       <HeroSection />
       <HighlightsSection />
+      <PartnerSection />
       <RoutesPreviewSection />
       <ContactPreviewSection />
     </>
   );
 }
+
+function PartnerSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="border-y border-border bg-card py-12">
+      <div className="container-vdt grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            {t.company.partnerTitle}
+          </h2>
+          <p className="mt-3 text-muted-foreground">{t.company.partnerLead}</p>
+          <img src={iataLogo} alt={t.common.iata} className="mt-6 h-12 w-auto" loading="lazy" />
+        </div>
+        <img
+          src={vnBanner}
+          alt="Vietnam Airlines Agentur in Deutschland"
+          className="w-full rounded-xl border border-border"
+          loading="lazy"
+        />
+      </div>
+    </section>
+  );
+}
+
 
 function HeroSection() {
   const { t } = useLanguage();
