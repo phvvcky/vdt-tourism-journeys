@@ -25,7 +25,7 @@ function ContactPage() {
 
   return (
     <div className="bg-background">
-      <section className="border-b border-border bg-vdt-blue-light py-12 sm:py-16">
+      <section className="border-b border-border bg-vdt-sand py-12 sm:py-16">
         <div className="container-vdt">
           <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" />
@@ -46,7 +46,7 @@ function ContactPage() {
                 <h2 className="font-heading text-xl font-semibold text-card-foreground">{t.contact.dataTitle}</h2>
                 <div className="mt-4 space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
@@ -59,7 +59,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
@@ -86,7 +86,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
@@ -97,7 +97,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Clock className="h-5 w-5" />
                     </div>
                     <div>
@@ -107,7 +107,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Landmark className="h-5 w-5" />
                     </div>
                     <div>

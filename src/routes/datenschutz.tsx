@@ -20,7 +20,7 @@ export const Route = createFileRoute("/datenschutz")({
 function DatenschutzPage() {
   return (
     <div className="bg-background">
-      <section className="border-b border-border bg-vdt-blue-light py-12 sm:py-16">
+      <section className="border-b border-border bg-vdt-sand py-12 sm:py-16">
         <div className="container-vdt">
           <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" />
