@@ -126,7 +126,18 @@ const de = {
     messagePlaceholder: "Reiseziel, Reisedaten und Anzahl der Personen…",
     submit: "Nachricht senden",
   },
+  company: {
+    bankTitle: "Bankverbindung",
+    bank: "Bank",
+    ceo: "Geschäftsführer",
+    taxNo: "Steuer-Nr.",
+    register: "Handelsregister",
+    seat: "Sitz der Gesellschaft und Gerichtsstand Berlin",
+    partnerTitle: "Unsere Partner & Akkreditierungen",
+    partnerLead: "Autorisierte Vietnam Airlines Agentur in Deutschland und IATA akkreditierter Agent.",
+  },
 };
+
 
 type Dict = typeof de;
 
