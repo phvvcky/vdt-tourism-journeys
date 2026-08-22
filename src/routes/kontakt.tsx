@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, MapPin, Phone, Mail, Clock, Send, Landmark } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Mail, Clock, Send, Landmark, MessageCircle } from "lucide-react";
 import { useLanguage } from "../lib/i18n";
-import { COMPANY } from "../lib/company";
+import { COMPANY, WHATSAPP_URL } from "../lib/company";
 import iataLogo from "../assets/iata-accredited-agent.png";
 import vnAirlines from "../assets/vietnam-airlines.jpg";
 
