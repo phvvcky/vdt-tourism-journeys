@@ -46,9 +46,12 @@ function ContactPage() {
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="font-medium text-foreground">VDT Touristik GmbH</p>
-                      <p className="text-sm text-muted-foreground">Rhinstraße 185</p>
-                      <p className="text-sm text-muted-foreground">13053 Berlin</p>
+                      <p className="font-medium text-foreground">{COMPANY.name}</p>
+                      <p className="text-sm text-muted-foreground">{COMPANY.street}</p>
+                      <p className="text-sm text-muted-foreground">{COMPANY.zipCity}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {t.company.ceo}: {COMPANY.ceo}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -57,7 +60,10 @@ function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-foreground">{t.contactPreview.phone}</p>
-                      <p className="text-sm text-muted-foreground">030 54 39 88 70</p>
+                      <a href={`tel:${COMPANY.phoneHref}`} className="text-sm text-muted-foreground hover:text-primary">
+                        {COMPANY.phone}
+                      </a>
+                      <p className="text-xs text-muted-foreground">Viber · WhatsApp · Zalo</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -66,7 +72,9 @@ function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-foreground">{t.contactPreview.email}</p>
-                      <p className="text-sm text-muted-foreground">info@vdt-berlin.de</p>
+                      <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted-foreground hover:text-primary">
+                        {COMPANY.email}
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -79,14 +87,38 @@ function ContactPage() {
                       <p className="text-sm text-muted-foreground">{t.contact.hoursWeekend}</p>
                     </div>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                      <Landmark className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground">{t.company.bankTitle}</p>
+                      <p className="text-sm text-muted-foreground">{COMPANY.bankName}</p>
+                      <p className="text-sm text-muted-foreground">IBAN {COMPANY.iban}</p>
+                      <p className="text-sm text-muted-foreground">BIC {COMPANY.bic}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                <h3 className="font-heading text-lg font-semibold text-card-foreground">{t.company.partnerTitle}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{t.company.partnerLead}</p>
+                <div className="mt-4 flex flex-wrap items-center gap-4">
+                  <img src={vnAirlines} alt="Vietnam Airlines" className="h-10 w-auto" loading="lazy" />
+                  <img src={iataLogo} alt={t.common.iata} className="h-10 w-auto" loading="lazy" />
                 </div>
               </div>
 
               <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
                 <h3 className="font-heading text-lg font-semibold text-card-foreground">{t.contact.iataTitle}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{t.contact.iataText}</p>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  {t.company.taxNo} {COMPANY.taxNumber} · {COMPANY.register}
+                </p>
               </div>
             </div>
+
 
             <div className="rounded-xl border border-border bg-card p-6 shadow-sm lg:col-span-2">
               <h2 className="font-heading text-xl font-semibold text-card-foreground">{t.contact.formTitle}</h2>
