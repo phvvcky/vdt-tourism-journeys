@@ -36,57 +36,69 @@ function ImpressumPage() {
             <div>
               <h2 className="font-heading text-xl font-semibold text-card-foreground">Angaben gemäß § 5 TMG</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                VDT Touristik GmbH
+                {COMPANY.name}
                 <br />
-                Rhinstraße 185
+                {COMPANY.street}
                 <br />
-                13053 Berlin
+                {COMPANY.zipCity}
                 <br />
-                Deutschland
+                {COMPANY.country}
+                <br />
+                Geschäftsführer: {COMPANY.ceo}
               </p>
             </div>
 
             <div>
               <h2 className="font-heading text-xl font-semibold text-card-foreground">Kontakt</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Telefon: 030 54 39 88 70
+                Telefon / Viber / WhatsApp / Zalo: {COMPANY.phone}
                 <br />
-                Telefax: 030 54 39 88 306
+                E-Mail: {COMPANY.email}
                 <br />
-                E-Mail: info@vdt-berlin.de
+                Homepage: {COMPANY.homepage}
               </p>
             </div>
 
             <div>
               <h2 className="font-heading text-xl font-semibold text-card-foreground">Registereintrag</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Eintragung im Handelsregister.
-                <br />
                 Registergericht: Amtsgericht Charlottenburg (Berlin)
                 <br />
-                Registernummer: HRB 82334 B
+                Registernummer: {COMPANY.register}
+                <br />
+                Sitz der Gesellschaft und Gerichtsstand: Berlin
               </p>
             </div>
 
             <div>
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">Umsatzsteuer-ID</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">Steuernummer</h2>
+              <p className="mt-2 text-sm text-muted-foreground">Steuer-Nr.: {COMPANY.taxNumber}</p>
+            </div>
+
+            <div>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">Bankverbindung</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
+                {COMPANY.bankName}
                 <br />
-                wird nachgereicht
+                IBAN: {COMPANY.iban}
+                <br />
+                BIC: {COMPANY.bic}
               </p>
             </div>
 
             <div>
               <h2 className="font-heading text-xl font-semibold text-card-foreground">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                VDT Touristik GmbH
+                {COMPANY.ceo}
                 <br />
-                Rhinstraße 185
+                {COMPANY.name}
                 <br />
-                13053 Berlin
+                {COMPANY.street}
+                <br />
+                {COMPANY.zipCity}
               </p>
             </div>
+
 
             <div>
               <h2 className="font-heading text-xl font-semibold text-card-foreground">Streitschlichtung</h2>
