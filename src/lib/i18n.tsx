@@ -14,9 +14,20 @@ const de = {
   common: {
     back: "Zurück zur Startseite",
     perPerson: "pro Person, einfacher Flug",
-    request: "Flug anfragen",
+    request: "Anfragen",
     allDestinations: "Alle Flugziele",
     iata: "IATA Accredited Agent",
+    whatsapp: "WhatsApp",
+    call: "Anrufen",
+    topRoute: "Top-Strecke",
+    airlines: "Airlines",
+    nonstop: "Nonstop",
+    via: "über",
+    layover: "Umsteigezeit",
+    from: "ab",
+    oneWay: "einfach",
+    hourShort: "h",
+    minuteShort: "min",
   },
   footer: {
     contact: "Kontakt",
@@ -58,40 +69,82 @@ const de = {
   },
   routes: {
     title: "Beliebte Strecken",
-    lead: "Eine Auswahl unserer gefragtesten Flugziele. Weitere Strecken und Tagespreise erhalten Sie persönlich im Büro oder telefonisch.",
+    lead: "Unsere gefragtesten Verbindungen ab Berlin. Preise sind Richtpreise für einen einfachen Flug – Tagespreise erhalten Sie persönlich oder per WhatsApp.",
     pageLead:
       "Hier finden Sie unsere gefragtesten Flugstrecken ab Berlin. Alle Preise sind Richtpreise für einfache Flüge und variieren je nach Reisezeit, Airline und Verfügbarkeit.",
-    priceOneWay: "einfach",
+    cities: {
+      hanoi: "Hanoi",
+      saigon: "Ho-Chi-Minh-Stadt",
+      danang: "Da Nang",
+      bangkok: "Bangkok",
+      singapore: "Singapur",
+      seoul: "Seoul",
+      tokyo: "Tokio",
+      manila: "Manila",
+    } as Record<string, string>,
+  },
+  map: {
+    title: "Unsere Strecken auf der Karte",
+    lead: "Berlin ist Ihr Startpunkt. Fahren Sie mit der Maus über eine Linie, um Airline, Umsteigezeit und Richtpreis zu sehen.",
+    departure: "Abflughafen",
+    destination: "Zielflughafen",
+    chooseDestination: "Ziel wählen",
+    cta: "Strecke anfragen",
+    note: "Kein Live-Preisvergleich – wir prüfen Ihre Wunschtermine persönlich und melden uns mit dem besten Tarif.",
+  },
+  testimonials: {
+    title: "Kundenstimmen",
+    lead: "Was unsere Kundinnen und Kunden über die Beratung bei VDT Touristik sagen. (Platzhaltertexte)",
     items: [
       {
-        title: "Berlin – Hanoi",
-        subtitle: "mit Vietnam Airlines & Qatar Airways",
-        description: "Direkte und günstige Umsteigeverbindungen in die Hauptstadt Vietnams.",
-        price: "ab 389 €",
-        tag: "Vietnam",
-        highlights: ["1 Zwischenstopp", "23 kg Freigepäck", "Flexible Termine", "Visa-Hilfe"],
+        quote:
+          "Platzhalter: Hier steht später eine echte Kundenstimme über die persönliche Beratung und den schnellen Ticketkauf.",
+        name: "M. Nguyen",
+        meta: "Berlin – Hanoi",
       },
       {
-        title: "Berlin – Ho-Chi-Minh-Stadt",
-        subtitle: "mit Vietnam Airlines & Turkish Airlines",
-        description: "Beliebte Strecke nach Saigon – auch mit Anschluss ins Mekong-Delta.",
-        price: "ab 419 €",
-        tag: "Vietnam",
-        highlights: ["Kurze Umsteigezeiten", "23 kg Freigepäck", "Gruppentarife", "Visa-Hilfe"],
+        quote:
+          "Platzhalter: Hier steht später eine echte Kundenstimme über Umbuchung und Gepäckfragen kurz vor dem Abflug.",
+        name: "T. Pham",
+        meta: "Berlin – Ho-Chi-Minh-Stadt",
       },
       {
-        title: "Berlin – Bangkok",
-        subtitle: "mit Qatar Airways & Emirates",
-        description: "Weitere Asien-Ziele wie Bangkok, Singapur, Seoul oder Tokio auf Anfrage.",
-        price: "ab 359 €",
-        tag: "Asien",
-        highlights: ["Viele Abflugtage", "Anschlussflüge Asien", "Business Class möglich", "Beratung inklusive"],
+        quote: "Platzhalter: Hier steht später eine echte Kundenstimme über Familientarife und Gruppenbuchungen.",
+        name: "S. Weber",
+        meta: "Berlin – Bangkok",
+      },
+      {
+        quote: "Platzhalter: Hier steht später eine echte Kundenstimme über die Hilfe beim Vietnam E-Visa.",
+        name: "L. Tran",
+        meta: "Berlin – Da Nang",
+      },
+    ],
+  },
+  faq: {
+    title: "Häufige Fragen",
+    lead: "Gepäck, Visa, Umbuchung – die wichtigsten Antworten vor Ihrer Buchung.",
+    items: [
+      {
+        q: "Wie viel Gepäck ist inklusive?",
+        a: "Auf Langstrecken nach Asien sind in der Economy Class in der Regel 23 kg Freigepäck plus Handgepäck enthalten. Bei Vietnam Airlines sind je nach Tarif auch 2 × 23 kg möglich. Wir prüfen den Tarif vor der Buchung und können Zusatzgepäck direkt mitbuchen.",
+      },
+      {
+        q: "Brauche ich ein Visum für Vietnam?",
+        a: "Für die meisten Reisenden ist ein Vietnam E-Visa nötig (bis 90 Tage, ein- oder mehrfache Einreise). Wir sagen Ihnen, welche Unterlagen Sie brauchen, und unterstützen beim Antrag. Deutsche Staatsangehörige benötigen zusätzlich einen mindestens sechs Monate gültigen Reisepass.",
+      },
+      {
+        q: "Kann ich meinen Flug umbuchen oder stornieren?",
+        a: "Das hängt vom gebuchten Tarif ab. Wir sagen Ihnen vor der Buchung, welche Gebühren bei Umbuchung oder Storno anfallen, und übernehmen die Änderung im Ernstfall direkt bei der Airline – ohne Warteschleife.",
+      },
+      {
+        q: "Warum im Reisebüro buchen statt online?",
+        a: "Als IATA akkreditierter Agent haben wir Zugang zu Airline-Tarifen und Sonderkonditionen, die online oft nicht sichtbar sind. Bei Flugausfall, Umbuchung oder Gepäckproblemen haben Sie einen Ansprechpartner in Berlin – auf Deutsch und Vietnamesisch.",
       },
     ],
   },
   contactPreview: {
     title: "Sprechen Sie uns an",
-    lead: "Besuchen Sie uns in Berlin oder rufen Sie uns an. Wir erstellen Ihnen gerne ein unverbindliches Flugangebot.",
+    lead: "Besuchen Sie uns in Berlin, rufen Sie an oder schreiben Sie uns per WhatsApp. Wir erstellen Ihnen gerne ein unverbindliches Flugangebot.",
     company: "VDT Touristik GmbH",
     phone: "Telefon",
     email: "E-Mail",
@@ -138,7 +191,6 @@ const de = {
   },
 };
 
-
 type Dict = typeof de;
 
 const vi: Dict = {
@@ -150,6 +202,17 @@ const vi: Dict = {
     request: "Yêu cầu báo giá",
     allDestinations: "Tất cả điểm đến",
     iata: "Đại lý được IATA công nhận",
+    whatsapp: "WhatsApp",
+    call: "Gọi ngay",
+    topRoute: "Chặng nổi bật",
+    airlines: "Hãng bay",
+    nonstop: "Bay thẳng",
+    via: "quá cảnh",
+    layover: "Thời gian nối chuyến",
+    from: "từ",
+    oneWay: "một chiều",
+    hourShort: "g",
+    minuteShort: "ph",
   },
   footer: {
     contact: "Liên hệ",
@@ -191,40 +254,80 @@ const vi: Dict = {
   },
   routes: {
     title: "Chặng bay phổ biến",
-    lead: "Một số chặng bay được yêu cầu nhiều nhất. Các chặng khác và giá trong ngày xin liên hệ trực tiếp hoặc qua điện thoại.",
+    lead: "Những chặng bay được yêu cầu nhiều nhất từ Berlin. Giá là giá tham khảo cho vé một chiều – giá trong ngày xin liên hệ trực tiếp hoặc qua WhatsApp.",
     pageLead:
       "Đây là những chặng bay được yêu cầu nhiều nhất từ Berlin. Giá là giá tham khảo cho vé một chiều, thay đổi theo thời điểm, hãng bay và tình trạng chỗ.",
-    priceOneWay: "một chiều",
+    cities: {
+      hanoi: "Hà Nội",
+      saigon: "TP. Hồ Chí Minh",
+      danang: "Đà Nẵng",
+      bangkok: "Bangkok",
+      singapore: "Singapore",
+      seoul: "Seoul",
+      tokyo: "Tokyo",
+      manila: "Manila",
+    } as Record<string, string>,
+  },
+  map: {
+    title: "Các chặng bay trên bản đồ",
+    lead: "Berlin là điểm khởi hành. Đưa chuột lên đường bay để xem hãng bay, thời gian nối chuyến và giá tham khảo.",
+    departure: "Sân bay khởi hành",
+    destination: "Sân bay đến",
+    chooseDestination: "Chọn điểm đến",
+    cta: "Gửi yêu cầu chặng bay",
+    note: "Không so sánh giá trực tuyến – chúng tôi kiểm tra ngày bay bạn muốn và báo lại mức giá tốt nhất.",
+  },
+  testimonials: {
+    title: "Khách hàng nói gì",
+    lead: "Cảm nhận của khách hàng về dịch vụ tư vấn tại VDT Touristik. (Nội dung mẫu)",
     items: [
       {
-        title: "Berlin – Hà Nội",
-        subtitle: "với Vietnam Airlines & Qatar Airways",
-        description: "Chuyến bay trực tiếp và nối chuyến giá tốt đến thủ đô Việt Nam.",
-        price: "từ 389 €",
-        tag: "Việt Nam",
-        highlights: ["1 điểm nối chuyến", "23 kg hành lý", "Ngày bay linh hoạt", "Hỗ trợ visa"],
+        quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về tư vấn tận tình và mua vé nhanh chóng.",
+        name: "M. Nguyên",
+        meta: "Berlin – Hà Nội",
       },
       {
-        title: "Berlin – TP. Hồ Chí Minh",
-        subtitle: "với Vietnam Airlines & Turkish Airlines",
-        description: "Chặng bay được yêu thích đến Sài Gòn – có thể nối chuyến về Đồng bằng sông Cửu Long.",
-        price: "từ 419 €",
-        tag: "Việt Nam",
-        highlights: ["Nối chuyến nhanh", "23 kg hành lý", "Giá theo nhóm", "Hỗ trợ visa"],
+        quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về đổi vé và hành lý trước chuyến bay.",
+        name: "T. Phạm",
+        meta: "Berlin – TP. Hồ Chí Minh",
       },
       {
-        title: "Berlin – Bangkok",
-        subtitle: "với Qatar Airways & Emirates",
-        description: "Các điểm đến châu Á khác như Bangkok, Singapore, Seoul hay Tokyo theo yêu cầu.",
-        price: "từ 359 €",
-        tag: "Châu Á",
-        highlights: ["Nhiều ngày khởi hành", "Nối chuyến trong châu Á", "Có hạng Business", "Tư vấn miễn phí"],
+        quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về giá vé gia đình và đặt vé theo nhóm.",
+        name: "S. Weber",
+        meta: "Berlin – Bangkok",
+      },
+      {
+        quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về hỗ trợ xin E-Visa Việt Nam.",
+        name: "L. Trần",
+        meta: "Berlin – Đà Nẵng",
+      },
+    ],
+  },
+  faq: {
+    title: "Câu hỏi thường gặp",
+    lead: "Hành lý, visa, đổi vé – những thông tin quan trọng trước khi đặt vé.",
+    items: [
+      {
+        q: "Được mang bao nhiêu hành lý?",
+        a: "Các chuyến bay đường dài đi châu Á hạng phổ thông thường bao gồm 23 kg hành lý ký gửi và hành lý xách tay. Với Vietnam Airlines, tuỳ loại vé có thể là 2 × 23 kg. Chúng tôi kiểm tra điều kiện vé trước khi đặt và có thể mua thêm hành lý ngay.",
+      },
+      {
+        q: "Tôi có cần visa vào Việt Nam?",
+        a: "Phần lớn khách cần E-Visa Việt Nam (tối đa 90 ngày, một hoặc nhiều lần nhập cảnh). Chúng tôi cho bạn biết cần giấy tờ gì và hỗ trợ làm đơn. Hộ chiếu cần còn hạn ít nhất sáu tháng.",
+      },
+      {
+        q: "Có thể đổi hoặc hủy vé không?",
+        a: "Tuỳ vào loại vé đã đặt. Trước khi đặt, chúng tôi thông báo rõ phí đổi và phí hủy, và khi cần sẽ làm việc trực tiếp với hãng bay thay bạn – không phải chờ tổng đài.",
+      },
+      {
+        q: "Vì sao nên đặt qua đại lý thay vì đặt online?",
+        a: "Là đại lý được IATA công nhận, chúng tôi có giá vé và ưu đãi của hãng mà trên mạng thường không thấy. Khi hoãn chuyến, đổi vé hay thất lạc hành lý, bạn luôn có người phụ trách tại Berlin – bằng tiếng Đức và tiếng Việt.",
       },
     ],
   },
   contactPreview: {
     title: "Hãy liên hệ với chúng tôi",
-    lead: "Ghé thăm văn phòng tại Berlin hoặc gọi cho chúng tôi. Chúng tôi sẵn sàng báo giá vé miễn phí.",
+    lead: "Ghé thăm văn phòng tại Berlin, gọi điện hoặc nhắn WhatsApp. Chúng tôi sẵn sàng báo giá vé miễn phí.",
     company: "VDT Touristik GmbH",
     phone: "Điện thoại",
     email: "Email",
@@ -270,16 +373,26 @@ const vi: Dict = {
   },
 };
 
-
 const en: Dict = {
   nav: { home: "Home", flights: "Destinations", contact: "Contact" },
   brand: { tagline: "Your flight ticket specialist in Berlin – worldwide tickets, personal advice." },
   common: {
     back: "Back to home",
     perPerson: "per person, one way",
-    request: "Request flight",
+    request: "Request",
     allDestinations: "All destinations",
     iata: "IATA Accredited Agent",
+    whatsapp: "WhatsApp",
+    call: "Call us",
+    topRoute: "Top route",
+    airlines: "Airlines",
+    nonstop: "Nonstop",
+    via: "via",
+    layover: "Layover",
+    from: "from",
+    oneWay: "one way",
+    hourShort: "h",
+    minuteShort: "min",
   },
   footer: {
     contact: "Contact",
@@ -302,7 +415,8 @@ const en: Dict = {
     items: [
       {
         title: "Partner airlines",
-        description: "Vietnam Airlines, Qatar Airways, Turkish Airlines, Emirates and more strong partners for your route.",
+        description:
+          "Vietnam Airlines, Qatar Airways, Turkish Airlines, Emirates and more strong partners for your route.",
       },
       {
         title: "Best rates as an IATA agent",
@@ -320,40 +434,80 @@ const en: Dict = {
   },
   routes: {
     title: "Popular routes",
-    lead: "A selection of our most requested flight destinations. Further routes and daily fares are available in the office or by phone.",
+    lead: "Our most requested connections from Berlin. Prices are guide prices for a one-way flight – ask us for today's fare in person or via WhatsApp.",
     pageLead:
       "These are our most requested routes from Berlin. All prices are guide prices for one-way flights and vary by travel date, airline and availability.",
-    priceOneWay: "one way",
+    cities: {
+      hanoi: "Hanoi",
+      saigon: "Ho Chi Minh City",
+      danang: "Da Nang",
+      bangkok: "Bangkok",
+      singapore: "Singapore",
+      seoul: "Seoul",
+      tokyo: "Tokyo",
+      manila: "Manila",
+    } as Record<string, string>,
+  },
+  map: {
+    title: "Our routes on the map",
+    lead: "Berlin is your starting point. Hover a line to see airline, layover and guide price.",
+    departure: "Departure airport",
+    destination: "Destination airport",
+    chooseDestination: "Choose destination",
+    cta: "Request this route",
+    note: "No live price comparison – we check your preferred dates personally and come back with the best fare.",
+  },
+  testimonials: {
+    title: "What our customers say",
+    lead: "Feedback about the advice at VDT Touristik. (Placeholder texts)",
     items: [
       {
-        title: "Berlin – Hanoi",
-        subtitle: "with Vietnam Airlines & Qatar Airways",
-        description: "Direct and affordable connecting flights to Vietnam's capital.",
-        price: "from €389",
-        tag: "Vietnam",
-        highlights: ["1 stopover", "23 kg baggage", "Flexible dates", "Visa support"],
+        quote: "Placeholder: a real customer quote about personal advice and fast ticketing will go here.",
+        name: "M. Nguyen",
+        meta: "Berlin – Hanoi",
       },
       {
-        title: "Berlin – Ho Chi Minh City",
-        subtitle: "with Vietnam Airlines & Turkish Airlines",
-        description: "A popular route to Saigon – with onward connections to the Mekong Delta.",
-        price: "from €419",
-        tag: "Vietnam",
-        highlights: ["Short layovers", "23 kg baggage", "Group fares", "Visa support"],
+        quote: "Placeholder: a real customer quote about rebooking and baggage questions before departure.",
+        name: "T. Pham",
+        meta: "Berlin – Ho Chi Minh City",
       },
       {
-        title: "Berlin – Bangkok",
-        subtitle: "with Qatar Airways & Emirates",
-        description: "Further Asian destinations such as Bangkok, Singapore, Seoul or Tokyo on request.",
-        price: "from €359",
-        tag: "Asia",
-        highlights: ["Many departure days", "Asia connections", "Business class available", "Advice included"],
+        quote: "Placeholder: a real customer quote about family fares and group bookings.",
+        name: "S. Weber",
+        meta: "Berlin – Bangkok",
+      },
+      {
+        quote: "Placeholder: a real customer quote about help with the Vietnam e-visa.",
+        name: "L. Tran",
+        meta: "Berlin – Da Nang",
+      },
+    ],
+  },
+  faq: {
+    title: "Frequently asked questions",
+    lead: "Baggage, visa, rebooking – the key answers before you book.",
+    items: [
+      {
+        q: "How much baggage is included?",
+        a: "On long-haul flights to Asia, economy fares usually include 23 kg checked baggage plus hand luggage. With Vietnam Airlines, 2 × 23 kg is possible depending on the fare. We check the fare rules before booking and can add extra baggage right away.",
+      },
+      {
+        q: "Do I need a visa for Vietnam?",
+        a: "Most travellers need a Vietnam e-visa (up to 90 days, single or multiple entry). We tell you which documents are required and help with the application. Your passport should be valid for at least six more months.",
+      },
+      {
+        q: "Can I rebook or cancel my flight?",
+        a: "That depends on the fare booked. Before booking we tell you the rebooking and cancellation fees, and if needed we handle the change directly with the airline – no call-centre queues.",
+      },
+      {
+        q: "Why book with a travel agency instead of online?",
+        a: "As an IATA accredited agent we have access to airline fares and special conditions that are often invisible online. If a flight is cancelled or baggage goes missing, you have a contact person in Berlin – in German and Vietnamese.",
       },
     ],
   },
   contactPreview: {
     title: "Talk to us",
-    lead: "Visit us in Berlin or give us a call. We are happy to prepare a free flight quote for you.",
+    lead: "Visit us in Berlin, call us or send a WhatsApp message. We are happy to prepare a free flight quote for you.",
     company: "VDT Touristik GmbH",
     phone: "Phone",
     email: "Email",
@@ -400,7 +554,6 @@ const en: Dict = {
   },
 };
 
-
 const dicts: Record<Lang, Dict> = { de, vi, en };
 
 const STORAGE_KEY = "vdt-lang";
@@ -432,9 +585,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  return (
-    <LanguageContext.Provider value={{ lang, setLang, t: dicts[lang] }}>{children}</LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={{ lang, setLang, t: dicts[lang] }}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage() {

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, MapPin, Phone, Mail, Clock, Send, Landmark } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Mail, Clock, Send, Landmark, MessageCircle } from "lucide-react";
 import { useLanguage } from "../lib/i18n";
-import { COMPANY } from "../lib/company";
+import { COMPANY, WHATSAPP_URL } from "../lib/company";
 import iataLogo from "../assets/iata-accredited-agent.png";
 import vnAirlines from "../assets/vietnam-airlines.jpg";
 
@@ -25,7 +25,7 @@ function ContactPage() {
 
   return (
     <div className="bg-background">
-      <section className="border-b border-border bg-vdt-blue-light py-12 sm:py-16">
+      <section className="border-b border-border bg-vdt-sand py-12 sm:py-16">
         <div className="container-vdt">
           <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" />
@@ -46,7 +46,7 @@ function ContactPage() {
                 <h2 className="font-heading text-xl font-semibold text-card-foreground">{t.contact.dataTitle}</h2>
                 <div className="mt-4 space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
@@ -59,19 +59,34 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="font-medium text-foreground">{t.contactPreview.phone}</p>
-                      <a href={`tel:${COMPANY.phoneHref}`} className="text-sm text-muted-foreground hover:text-primary">
-                        {COMPANY.phone}
-                      </a>
-                      <p className="text-xs text-muted-foreground">Viber · WhatsApp · Zalo</p>
+                      <div className="mt-1 flex flex-wrap items-center gap-2">
+                        <a
+                          href={`tel:${COMPANY.phoneHref}`}
+                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-ink px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-vdt-red"
+                        >
+                          <Phone className="h-3.5 w-3.5" />
+                          {COMPANY.phone}
+                        </a>
+                        <a
+                          href={WHATSAPP_URL}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-gold px-3 py-1.5 text-xs font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+                        >
+                          <MessageCircle className="h-3.5 w-3.5" />
+                          {t.common.whatsapp}
+                        </a>
+                      </div>
+                      <p className="mt-1 text-xs text-muted-foreground">Viber · WhatsApp · Zalo</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
@@ -82,7 +97,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Clock className="h-5 w-5" />
                     </div>
                     <div>
@@ -92,7 +107,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                       <Landmark className="h-5 w-5" />
                     </div>
                     <div>

@@ -15,3 +15,6 @@ export const COMPANY = {
   taxNumber: "37/569/31228",
   register: "HRB 82334 Berlin-Charlottenburg",
 } as const;
+
+// WhatsApp-Direktlink (gleiche Nummer wie Telefon/Viber/Zalo)
+export const WHATSAPP_URL = `https://wa.me/${COMPANY.phoneHref.replace(/[^0-9]/g, "")}`;

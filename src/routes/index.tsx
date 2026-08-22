@@ -1,23 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Plane, MapPin, Ticket, Headphones, Phone, Mail, ArrowRight } from "lucide-react";
+import { Plane, MapPin, Ticket, Headphones, Phone, Mail, ArrowRight, MessageCircle } from "lucide-react";
 import heroImage from "../assets/hero-travel.jpg";
-// Platzhalterbilder – werden später durch eigene Fotos (Büro, Team, Standort Berlin) ersetzt
-import routeHanoi from "../assets/offer-vietnam.jpg";
-import routeSaigon from "../assets/offer-city.jpg";
-import routeBangkok from "../assets/offer-beach.jpg";
 import vnBanner from "../assets/vn-agentur-banner.jpg";
 import iataLogo from "../assets/iata-accredited-agent.png";
 import { useLanguage } from "../lib/i18n";
-import { COMPANY } from "../lib/company";
-
+import { COMPANY, WHATSAPP_URL } from "../lib/company";
+import { FlightGrid } from "../components/FlightRoutes";
+import { RouteMap } from "../components/RouteMap";
+import { Testimonials } from "../components/Testimonials";
+import { Faq } from "../components/Faq";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "VDT Touristik GmbH Berlin – Flugtickets weltweit" },
-      { name: "description", content: "Flugtickets ab Berlin mit Vietnam Airlines, Qatar Airways & weiteren Partnern. IATA akkreditierter Agent, Vietnam-Spezialist." },
+      {
+        name: "description",
+        content:
+          "Flugtickets ab Berlin mit Vietnam Airlines, Qatar Airways & weiteren Partnern. IATA akkreditierter Agent, Vietnam-Spezialist.",
+      },
       { property: "og:title", content: "VDT Touristik GmbH Berlin – Flugtickets weltweit" },
-      { property: "og:description", content: "Flugtickets ab Berlin mit Vietnam Airlines, Qatar Airways & weiteren Partnern. IATA akkreditierter Agent, Vietnam-Spezialist." },
+      {
+        property: "og:description",
+        content:
+          "Flugtickets ab Berlin mit Vietnam Airlines, Qatar Airways & weiteren Partnern. IATA akkreditierter Agent, Vietnam-Spezialist.",
+      },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -30,70 +37,59 @@ function HomePage() {
     <>
       <HeroSection />
       <HighlightsSection />
+      <RoutesSection />
+      <RouteMap anchorId="anfrage" />
       <PartnerSection />
-      <RoutesPreviewSection />
+      <Testimonials />
+      <Faq />
       <ContactPreviewSection />
     </>
   );
 }
 
-function PartnerSection() {
-  const { t } = useLanguage();
-  return (
-    <section className="border-y border-border bg-card py-12">
-      <div className="container-vdt grid items-center gap-8 lg:grid-cols-2">
-        <div>
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            {t.company.partnerTitle}
-          </h2>
-          <p className="mt-3 text-muted-foreground">{t.company.partnerLead}</p>
-          <img src={iataLogo} alt={t.common.iata} className="mt-6 h-12 w-auto" loading="lazy" />
-        </div>
-        <img
-          src={vnBanner}
-          alt="Vietnam Airlines Agentur in Deutschland"
-          className="w-full rounded-xl border border-border"
-          loading="lazy"
-        />
-      </div>
-    </section>
-  );
-}
-
-
 function HeroSection() {
   const { t } = useLanguage();
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-vdt-ink">
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt={t.hero.title}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover opacity-40 grayscale-[35%]"
           width={1920}
           height={720}
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-vdt-blue-dark/90 via-vdt-blue/80 to-vdt-blue/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-vdt-ink via-vdt-ink/90 to-vdt-red-dark/70" />
       </div>
       <div className="container-vdt relative py-24 sm:py-32 lg:py-40">
         <div className="max-w-2xl text-primary-foreground">
-          <p className="mb-4 inline-block rounded-full bg-vdt-red/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+          <p className="eyebrow inline-flex items-center gap-2 text-vdt-gold">
+            <span className="h-px w-8 bg-vdt-gold" />
             {t.hero.badge}
           </p>
-          <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">{t.hero.title}</h1>
-          <p className="mt-6 text-lg text-primary-foreground/90 sm:text-xl">{t.hero.lead}</p>
+          <h1 className="mt-5 font-heading text-4xl font-extrabold sm:text-5xl lg:text-6xl">{t.hero.title}</h1>
+          <p className="mt-6 max-w-xl text-lg text-primary-foreground/75">{t.hero.lead}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/kontakt"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-vdt-red px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-vdt-red/90"
+            <a
+              href={`tel:${COMPANY.phoneHref}`}
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-vdt-red px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-vdt-red/85"
             >
               <Phone className="h-4 w-4" />
-              {t.hero.ctaContact}
-            </Link>
+              {COMPANY.phone}
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-vdt-gold px-5 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+            >
+              <MessageCircle className="h-4 w-4" />
+              {t.common.whatsapp}
+            </a>
             <Link
               to="/angebote"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-foreground/30 bg-primary-foreground/10 px-5 py-3 text-sm font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/20"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-foreground/25 px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
             >
               {t.hero.ctaOffers}
               <ArrowRight className="h-4 w-4" />
@@ -113,18 +109,19 @@ function HighlightsSection() {
     <section className="bg-background py-16 sm:py-20">
       <div className="container-vdt">
         <div className="mb-10 max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{t.why.title}</h2>
+          <p className="eyebrow text-vdt-red">VDT Touristik</p>
+          <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">{t.why.title}</h2>
           <p className="mt-4 text-muted-foreground">{t.why.lead}</p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {t.why.items.map((item, i) => {
             const Icon = icons[i] ?? Plane;
             return (
               <div
                 key={item.title}
-                className="group rounded-xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+                className="rounded-xl border border-border bg-card p-6 transition-shadow hover:shadow-md"
               >
-                <div className="mb-4 inline-flex rounded-lg bg-vdt-blue-light p-3 text-vdt-blue">
+                <div className="mb-4 inline-flex rounded-lg bg-vdt-red-light p-3 text-vdt-red">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-semibold text-card-foreground">{item.title}</h3>
@@ -138,58 +135,48 @@ function HighlightsSection() {
   );
 }
 
-function RoutesPreviewSection() {
+function RoutesSection() {
   const { t } = useLanguage();
-  const images = [routeHanoi, routeSaigon, routeBangkok];
-
   return (
     <section className="bg-secondary py-16 sm:py-20">
       <div className="container-vdt">
         <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {t.routes.title}
-            </h2>
+            <p className="eyebrow text-vdt-red">Berlin (BER)</p>
+            <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">{t.routes.title}</h2>
             <p className="mt-4 text-muted-foreground">{t.routes.lead}</p>
           </div>
-          <Link to="/angebote" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+          <Link
+            to="/angebote"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-vdt-red hover:underline"
+          >
             {t.common.allDestinations}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {t.routes.items.map((route, i) => (
-            <article
-              key={route.title}
-              className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={images[i] ?? routeHanoi}
-                  alt={route.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                  width={800}
-                  height={600}
-                />
-                <span className="absolute left-3 top-3 rounded-full bg-vdt-red px-2.5 py-1 text-xs font-semibold text-white">
-                  {route.tag}
-                </span>
-              </div>
-              <div className="p-5">
-                <p className="text-xs font-medium text-primary">{route.subtitle}</p>
-                <h3 className="font-heading text-lg font-semibold text-card-foreground">{route.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{route.description}</p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="font-heading text-lg font-bold text-primary">
-                    {route.price} {t.routes.priceOneWay}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{t.common.perPerson}</span>
-                </div>
-              </div>
-            </article>
-          ))}
+        <FlightGrid />
+      </div>
+    </section>
+  );
+}
+
+function PartnerSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="border-y border-border bg-card py-12">
+      <div className="container-vdt grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <p className="eyebrow text-vdt-red">Partner</p>
+          <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{t.company.partnerTitle}</h2>
+          <p className="mt-3 text-muted-foreground">{t.company.partnerLead}</p>
+          <img src={iataLogo} alt={t.common.iata} className="mt-6 h-12 w-auto" loading="lazy" />
         </div>
+        <img
+          src={vnBanner}
+          alt="Vietnam Airlines Agentur in Deutschland"
+          className="w-full rounded-xl border border-border"
+          loading="lazy"
+        />
       </div>
     </section>
   );
@@ -198,17 +185,38 @@ function RoutesPreviewSection() {
 function ContactPreviewSection() {
   const { t } = useLanguage();
   return (
-    <section className="bg-background py-16 sm:py-20">
+    <section id="anfrage" className="scroll-mt-20 bg-background py-16 sm:py-20">
       <div className="container-vdt">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <p className="eyebrow text-vdt-red">{t.footer.contact}</p>
+            <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
               {t.contactPreview.title}
             </h2>
             <p className="mt-4 text-muted-foreground">{t.contactPreview.lead}</p>
-            <div className="mt-6 space-y-4">
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={`tel:${COMPANY.phoneHref}`}
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-vdt-ink px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-vdt-red"
+              >
+                <Phone className="h-4 w-4" />
+                {COMPANY.phone}
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-vdt-gold px-5 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+              >
+                <MessageCircle className="h-4 w-4" />
+                {t.common.whatsapp}
+              </a>
+            </div>
+
+            <div className="mt-8 space-y-4">
               <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
@@ -218,23 +226,12 @@ function ContactPreviewSection() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
-                  <Phone className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">{t.contactPreview.phone}</p>
-                  <a href={`tel:${COMPANY.phoneHref}`} className="text-sm text-muted-foreground hover:text-primary">
-                    {COMPANY.phone}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
+                <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
                   <p className="font-medium text-foreground">{t.contactPreview.email}</p>
-                  <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted-foreground hover:text-primary">
+                  <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted-foreground hover:text-vdt-red">
                     {COMPANY.email}
                   </a>
                 </div>
@@ -244,14 +241,14 @@ function ContactPreviewSection() {
             <div className="mt-8">
               <Link
                 to="/kontakt"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-vdt-red hover:underline"
               >
                 {t.contactPreview.cta}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
-          <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+          <div className="rounded-xl border border-border bg-card p-6">
             <h3 className="font-heading text-xl font-semibold text-card-foreground">{t.contactPreview.hoursTitle}</h3>
             <dl className="mt-4 space-y-2 text-sm">
               <div className="flex justify-between">
