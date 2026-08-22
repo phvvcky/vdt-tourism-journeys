@@ -170,10 +170,11 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container-vdt flex h-16 items-center justify-between gap-2">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-heading text-xl font-bold text-primary">VDT</span>
+        <Link to="/" className="flex items-center gap-3">
+          <img src={vdtLogo} alt="VDT Touristik GmbH Logo" className="h-9 w-auto" width={364} height={176} />
           <span className="hidden text-sm font-medium text-foreground sm:inline">Touristik GmbH</span>
         </Link>
+
         <div className="flex items-center gap-2 sm:gap-4">
           <nav className="flex items-center gap-1 sm:gap-3">
             <NavLink to="/">{t.nav.home}</NavLink>
