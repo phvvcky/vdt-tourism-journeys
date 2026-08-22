@@ -12,6 +12,11 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider, useLanguage, LANGS } from "../lib/i18n";
+import { COMPANY } from "../lib/company";
+import vdtLogo from "../assets/vdt-logo.png";
+import iataLogo from "../assets/iata-accredited-agent.png";
+import vnAirlines from "../assets/vietnam-airlines.jpg";
+
 
 function NotFoundComponent() {
   return (
