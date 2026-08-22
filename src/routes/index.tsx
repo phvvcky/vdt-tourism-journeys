@@ -5,7 +5,11 @@ import heroImage from "../assets/hero-travel.jpg";
 import routeHanoi from "../assets/offer-vietnam.jpg";
 import routeSaigon from "../assets/offer-city.jpg";
 import routeBangkok from "../assets/offer-beach.jpg";
+import vnBanner from "../assets/vn-agentur-banner.jpg";
+import iataLogo from "../assets/iata-accredited-agent.png";
 import { useLanguage } from "../lib/i18n";
+import { COMPANY } from "../lib/company";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
