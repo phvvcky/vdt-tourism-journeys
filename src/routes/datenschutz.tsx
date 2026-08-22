@@ -39,15 +39,16 @@ function DatenschutzPage() {
                 Verantwortlich für die Datenverarbeitung auf dieser Website ist:
                 <br />
                 <br />
-                VDT Touristik GmbH
+                {COMPANY.name}
                 <br />
-                Rhinstraße 185
+                {COMPANY.street}
                 <br />
-                13053 Berlin
+                {COMPANY.zipCity}
                 <br />
-                Telefon: 030 54 39 88 70
+                Telefon: {COMPANY.phone}
                 <br />
-                E-Mail: info@vdt-berlin.de
+                E-Mail: {COMPANY.email}
+
               </p>
             </div>
 
