@@ -388,7 +388,18 @@ const en: Dict = {
     messagePlaceholder: "Destination, travel dates and number of passengers…",
     submit: "Send message",
   },
+  company: {
+    bankTitle: "Bank details",
+    bank: "Bank",
+    ceo: "Managing Director",
+    taxNo: "Tax no.",
+    register: "Commercial register",
+    seat: "Registered office and place of jurisdiction: Berlin",
+    partnerTitle: "Our partners & accreditations",
+    partnerLead: "Authorised Vietnam Airlines agency in Germany and IATA accredited agent.",
+  },
 };
+
 
 const dicts: Record<Lang, Dict> = { de, vi, en };
 
