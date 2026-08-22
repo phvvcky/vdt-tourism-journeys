@@ -12,7 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider, useLanguage, LANGS } from "../lib/i18n";
-import { COMPANY } from "../lib/company";
+import { COMPANY, WHATSAPP_URL } from "../lib/company";
+import { Phone, MessageCircle } from "lucide-react";
 import vdtLogo from "../assets/vdt-logo.png";
 import iataLogo from "../assets/iata-accredited-agent.png";
 import vnAirlines from "../assets/vietnam-airlines.jpg";
@@ -97,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -186,6 +187,24 @@ function Header() {
             <NavLink to="/angebote">{t.nav.flights}</NavLink>
             <NavLink to="/kontakt">{t.nav.contact}</NavLink>
           </nav>
+          <div className="hidden items-center gap-2 md:flex">
+            <a
+              href={`tel:${COMPANY.phoneHref}`}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-vdt-red"
+            >
+              <Phone className="h-4 w-4 text-vdt-red" />
+              {COMPANY.phone}
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-1.5 rounded-md bg-vdt-gold px-3 py-1.5 text-sm font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+            >
+              <MessageCircle className="h-4 w-4" />
+              {t.common.whatsapp}
+            </a>
+          </div>
           <LanguageSwitcher />
         </div>
       </div>
@@ -209,7 +228,7 @@ function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-border bg-vdt-blue-dark text-primary-foreground">
+    <footer className="border-t border-vdt-gold/30 bg-vdt-ink text-primary-foreground">
       <div className="container-vdt py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
