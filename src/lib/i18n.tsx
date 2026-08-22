@@ -258,7 +258,18 @@ const vi: Dict = {
     messagePlaceholder: "Điểm đến, ngày bay và số lượng khách…",
     submit: "Gửi tin nhắn",
   },
+  company: {
+    bankTitle: "Thông tin ngân hàng",
+    bank: "Ngân hàng",
+    ceo: "Giám đốc",
+    taxNo: "Mã số thuế",
+    register: "Đăng ký doanh nghiệp",
+    seat: "Trụ sở và địa điểm pháp lý: Berlin",
+    partnerTitle: "Đối tác & chứng nhận",
+    partnerLead: "Đại lý Vietnam Airlines được uỷ quyền tại Đức và đại lý được IATA công nhận.",
+  },
 };
+
 
 const en: Dict = {
   nav: { home: "Home", flights: "Destinations", contact: "Contact" },
