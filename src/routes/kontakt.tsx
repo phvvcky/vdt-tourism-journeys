@@ -64,10 +64,25 @@ function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-foreground">{t.contactPreview.phone}</p>
-                      <a href={`tel:${COMPANY.phoneHref}`} className="text-sm text-muted-foreground hover:text-primary">
-                        {COMPANY.phone}
-                      </a>
-                      <p className="text-xs text-muted-foreground">Viber · WhatsApp · Zalo</p>
+                      <div className="mt-1 flex flex-wrap items-center gap-2">
+                        <a
+                          href={`tel:${COMPANY.phoneHref}`}
+                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-ink px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-vdt-red"
+                        >
+                          <Phone className="h-3.5 w-3.5" />
+                          {COMPANY.phone}
+                        </a>
+                        <a
+                          href={WHATSAPP_URL}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-gold px-3 py-1.5 text-xs font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+                        >
+                          <MessageCircle className="h-3.5 w-3.5" />
+                          {t.common.whatsapp}
+                        </a>
+                      </div>
+                      <p className="mt-1 text-xs text-muted-foreground">Viber · WhatsApp · Zalo</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
