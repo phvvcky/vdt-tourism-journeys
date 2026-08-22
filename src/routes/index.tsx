@@ -5,7 +5,11 @@ import heroImage from "../assets/hero-travel.jpg";
 import routeHanoi from "../assets/offer-vietnam.jpg";
 import routeSaigon from "../assets/offer-city.jpg";
 import routeBangkok from "../assets/offer-beach.jpg";
+import vnBanner from "../assets/vn-agentur-banner.jpg";
+import iataLogo from "../assets/iata-accredited-agent.png";
 import { useLanguage } from "../lib/i18n";
+import { COMPANY } from "../lib/company";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,11 +30,36 @@ function HomePage() {
     <>
       <HeroSection />
       <HighlightsSection />
+      <PartnerSection />
       <RoutesPreviewSection />
       <ContactPreviewSection />
     </>
   );
 }
+
+function PartnerSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="border-y border-border bg-card py-12">
+      <div className="container-vdt grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            {t.company.partnerTitle}
+          </h2>
+          <p className="mt-3 text-muted-foreground">{t.company.partnerLead}</p>
+          <img src={iataLogo} alt={t.common.iata} className="mt-6 h-12 w-auto" loading="lazy" />
+        </div>
+        <img
+          src={vnBanner}
+          alt="Vietnam Airlines Agentur in Deutschland"
+          className="w-full rounded-xl border border-border"
+          loading="lazy"
+        />
+      </div>
+    </section>
+  );
+}
+
 
 function HeroSection() {
   const { t } = useLanguage();
@@ -183,9 +212,9 @@ function ContactPreviewSection() {
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">{t.contactPreview.company}</p>
-                  <p className="text-sm text-muted-foreground">Rhinstraße 185</p>
-                  <p className="text-sm text-muted-foreground">13053 Berlin</p>
+                  <p className="font-medium text-foreground">{COMPANY.name}</p>
+                  <p className="text-sm text-muted-foreground">{COMPANY.street}</p>
+                  <p className="text-sm text-muted-foreground">{COMPANY.zipCity}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -194,7 +223,9 @@ function ContactPreviewSection() {
                 </div>
                 <div>
                   <p className="font-medium text-foreground">{t.contactPreview.phone}</p>
-                  <p className="text-sm text-muted-foreground">030 54 39 88 70</p>
+                  <a href={`tel:${COMPANY.phoneHref}`} className="text-sm text-muted-foreground hover:text-primary">
+                    {COMPANY.phone}
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -203,10 +234,13 @@ function ContactPreviewSection() {
                 </div>
                 <div>
                   <p className="font-medium text-foreground">{t.contactPreview.email}</p>
-                  <p className="text-sm text-muted-foreground">info@vdt-berlin.de</p>
+                  <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted-foreground hover:text-primary">
+                    {COMPANY.email}
+                  </a>
                 </div>
               </div>
             </div>
+
             <div className="mt-8">
               <Link
                 to="/kontakt"

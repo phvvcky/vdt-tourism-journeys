@@ -12,6 +12,11 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider, useLanguage, LANGS } from "../lib/i18n";
+import { COMPANY } from "../lib/company";
+import vdtLogo from "../assets/vdt-logo.png";
+import iataLogo from "../assets/iata-accredited-agent.png";
+import vnAirlines from "../assets/vietnam-airlines.jpg";
+
 
 function NotFoundComponent() {
   return (
@@ -98,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -170,10 +175,11 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container-vdt flex h-16 items-center justify-between gap-2">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-heading text-xl font-bold text-primary">VDT</span>
+        <Link to="/" className="flex items-center gap-3">
+          <img src={vdtLogo} alt="VDT Touristik GmbH Logo" className="h-9 w-auto" width={364} height={176} />
           <span className="hidden text-sm font-medium text-foreground sm:inline">Touristik GmbH</span>
         </Link>
+
         <div className="flex items-center gap-2 sm:gap-4">
           <nav className="flex items-center gap-1 sm:gap-3">
             <NavLink to="/">{t.nav.home}</NavLink>
@@ -205,20 +211,42 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-vdt-blue-dark text-primary-foreground">
       <div className="container-vdt py-12">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="font-heading text-lg font-semibold">VDT Touristik GmbH</h3>
+            <h3 className="font-heading text-lg font-semibold">{COMPANY.name}</h3>
             <p className="mt-2 text-sm text-primary-foreground/80">{t.brand.tagline}</p>
-            <p className="mt-4 text-xs text-primary-foreground/60">{t.common.iata}</p>
+            <div className="mt-4 flex items-center gap-3">
+              <img
+                src={vnAirlines}
+                alt="Vietnam Airlines"
+                className="h-8 w-auto rounded bg-white p-1"
+                loading="lazy"
+              />
+              <img
+                src={iataLogo}
+                alt={t.common.iata}
+                className="h-8 w-auto rounded bg-white p-1"
+                loading="lazy"
+              />
+            </div>
           </div>
           <div>
             <h3 className="font-heading text-lg font-semibold">{t.footer.contact}</h3>
             <address className="mt-2 not-italic text-sm text-primary-foreground/80">
-              <p>Rhinstraße 185</p>
-              <p>13053 Berlin</p>
-              <p className="mt-2">Tel.: 030 54 39 88 70</p>
-              <p>{t.footer.hours}</p>
+              <p>{COMPANY.street}</p>
+              <p>{COMPANY.zipCity}</p>
+              <p className="mt-2">Tel.: {COMPANY.phone}</p>
+              <p>{COMPANY.email}</p>
+              <p className="mt-2">{t.footer.hours}</p>
             </address>
+          </div>
+          <div>
+            <h3 className="font-heading text-lg font-semibold">{t.company.bankTitle}</h3>
+            <div className="mt-2 space-y-1 text-sm text-primary-foreground/80">
+              <p>{COMPANY.bankName}</p>
+              <p>IBAN {COMPANY.iban}</p>
+              <p>BIC {COMPANY.bic}</p>
+            </div>
           </div>
           <div>
             <h3 className="font-heading text-lg font-semibold">{t.footer.legal}</h3>
@@ -234,13 +262,23 @@ function Footer() {
                 </Link>
               </li>
             </ul>
+            <div className="mt-4 space-y-1 text-xs text-primary-foreground/60">
+              <p>
+                {t.company.ceo}: {COMPANY.ceo}
+              </p>
+              <p>
+                {t.company.taxNo} {COMPANY.taxNumber}
+              </p>
+              <p>{COMPANY.register}</p>
+            </div>
           </div>
         </div>
         <div className="mt-8 border-t border-primary-foreground/10 pt-8 text-center text-xs text-primary-foreground/60">
           <p>
-            &copy; {new Date().getFullYear()} VDT Touristik GmbH Berlin. {t.footer.rights}
+            &copy; {new Date().getFullYear()} {COMPANY.name} Berlin. {t.footer.rights} · {t.company.seat}
           </p>
         </div>
+
       </div>
     </footer>
   );

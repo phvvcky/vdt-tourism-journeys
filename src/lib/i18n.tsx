@@ -126,7 +126,18 @@ const de = {
     messagePlaceholder: "Reiseziel, Reisedaten und Anzahl der Personen…",
     submit: "Nachricht senden",
   },
+  company: {
+    bankTitle: "Bankverbindung",
+    bank: "Bank",
+    ceo: "Geschäftsführer",
+    taxNo: "Steuer-Nr.",
+    register: "Handelsregister",
+    seat: "Sitz der Gesellschaft und Gerichtsstand Berlin",
+    partnerTitle: "Unsere Partner & Akkreditierungen",
+    partnerLead: "Autorisierte Vietnam Airlines Agentur in Deutschland und IATA akkreditierter Agent.",
+  },
 };
+
 
 type Dict = typeof de;
 
@@ -247,7 +258,18 @@ const vi: Dict = {
     messagePlaceholder: "Điểm đến, ngày bay và số lượng khách…",
     submit: "Gửi tin nhắn",
   },
+  company: {
+    bankTitle: "Thông tin ngân hàng",
+    bank: "Ngân hàng",
+    ceo: "Giám đốc",
+    taxNo: "Mã số thuế",
+    register: "Đăng ký doanh nghiệp",
+    seat: "Trụ sở và địa điểm pháp lý: Berlin",
+    partnerTitle: "Đối tác & chứng nhận",
+    partnerLead: "Đại lý Vietnam Airlines được uỷ quyền tại Đức và đại lý được IATA công nhận.",
+  },
 };
+
 
 const en: Dict = {
   nav: { home: "Home", flights: "Destinations", contact: "Contact" },
@@ -366,7 +388,18 @@ const en: Dict = {
     messagePlaceholder: "Destination, travel dates and number of passengers…",
     submit: "Send message",
   },
+  company: {
+    bankTitle: "Bank details",
+    bank: "Bank",
+    ceo: "Managing Director",
+    taxNo: "Tax no.",
+    register: "Commercial register",
+    seat: "Registered office and place of jurisdiction: Berlin",
+    partnerTitle: "Our partners & accreditations",
+    partnerLead: "Authorised Vietnam Airlines agency in Germany and IATA accredited agent.",
+  },
 };
+
 
 const dicts: Record<Lang, Dict> = { de, vi, en };
 
