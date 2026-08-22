@@ -183,9 +183,9 @@ function ContactPreviewSection() {
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">{t.contactPreview.company}</p>
-                  <p className="text-sm text-muted-foreground">Rhinstraße 185</p>
-                  <p className="text-sm text-muted-foreground">13053 Berlin</p>
+                  <p className="font-medium text-foreground">{COMPANY.name}</p>
+                  <p className="text-sm text-muted-foreground">{COMPANY.street}</p>
+                  <p className="text-sm text-muted-foreground">{COMPANY.zipCity}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -194,7 +194,9 @@ function ContactPreviewSection() {
                 </div>
                 <div>
                   <p className="font-medium text-foreground">{t.contactPreview.phone}</p>
-                  <p className="text-sm text-muted-foreground">030 54 39 88 70</p>
+                  <a href={`tel:${COMPANY.phoneHref}`} className="text-sm text-muted-foreground hover:text-primary">
+                    {COMPANY.phone}
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -203,10 +205,13 @@ function ContactPreviewSection() {
                 </div>
                 <div>
                   <p className="font-medium text-foreground">{t.contactPreview.email}</p>
-                  <p className="text-sm text-muted-foreground">info@vdt-berlin.de</p>
+                  <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted-foreground hover:text-primary">
+                    {COMPANY.email}
+                  </a>
                 </div>
               </div>
             </div>
+
             <div className="mt-8">
               <Link
                 to="/kontakt"
