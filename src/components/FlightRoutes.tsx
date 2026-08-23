@@ -3,6 +3,7 @@ import { ArrowRight, Plane, Clock, Star } from "lucide-react";
 import { FLIGHTS, ORIGIN, formatLayover } from "../lib/flight-data";
 import { useLanguage } from "../lib/i18n";
 import { AirlineTag } from "./AirlineTag";
+import { Reveal } from "./Reveal";
 
 export function FlightGrid({ limit }: { limit?: number }) {
   const { t } = useLanguage();
@@ -10,15 +11,19 @@ export function FlightGrid({ limit }: { limit?: number }) {
 
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      {flights.map((flight) => {
+      {flights.map((flight, i) => {
         const city = t.routes.cities[flight.id] ?? flight.iata;
         const layover = formatLayover(flight.layoverMin, t.common.hourShort, t.common.minuteShort);
 
         return (
-          <article
+          <Reveal
             key={flight.id}
-            className={`relative flex flex-col rounded-xl border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg ${
-              flight.top ? "border-vdt-gold-dark/60 shadow-sm" : "border-border"
+            as="article"
+            delay={i * 70}
+            className={`group relative flex flex-col rounded-xl border bg-card p-5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
+              flight.top
+                ? "border-vdt-gold-dark/60 shadow-sm hover:shadow-vdt-gold/20"
+                : "border-border hover:border-vdt-red/30 hover:shadow-vdt-red/10"
             }`}
           >
             {flight.top && (
@@ -29,9 +34,13 @@ export function FlightGrid({ limit }: { limit?: number }) {
             )}
 
             <div className="flex items-baseline gap-2 pt-1">
-              <span className="font-heading text-sm font-bold text-muted-foreground">{ORIGIN.code}</span>
-              <Plane className="h-3.5 w-3.5 rotate-90 text-vdt-red" />
-              <span className="font-heading text-sm font-bold text-muted-foreground">{flight.iata}</span>
+              <span className="font-heading text-sm font-bold text-muted-foreground">
+                {ORIGIN.code}
+              </span>
+              <Plane className="h-3.5 w-3.5 rotate-90 text-vdt-red transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="font-heading text-sm font-bold text-muted-foreground">
+                {flight.iata}
+              </span>
             </div>
             <h3 className="mt-1 font-heading text-lg font-bold text-card-foreground">
               Berlin – {city}
@@ -56,17 +65,18 @@ export function FlightGrid({ limit }: { limit?: number }) {
 
             <div className="mt-auto pt-5">
               <p className="font-heading text-xl font-bold text-vdt-red">
-                {t.common.from} {flight.price} € <span className="text-xs font-medium text-muted-foreground">{t.common.oneWay}</span>
+                {t.common.from} {flight.price} €{" "}
+                <span className="text-xs font-medium text-muted-foreground">{t.common.oneWay}</span>
               </p>
               <Link
                 to="/kontakt"
-                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-vdt-ink px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-vdt-red"
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-vdt-ink px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:bg-vdt-red hover:shadow-md hover:shadow-vdt-red/25"
               >
                 {t.common.request}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-          </article>
+          </Reveal>
         );
       })}
     </div>

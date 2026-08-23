@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -18,13 +18,14 @@ import vdtLogo from "../assets/vdt-logo.png";
 import iataLogo from "../assets/iata-accredited-agent.png";
 import vnAirlines from "../assets/vietnam-airlines.jpg";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="font-heading text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 font-heading text-xl font-semibold text-foreground">Seite nicht gefunden</h2>
+        <h2 className="mt-4 font-heading text-xl font-semibold text-foreground">
+          Seite nicht gefunden
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">
           Die gewünschte Seite existiert nicht oder wurde verschoben.
         </p>
@@ -55,7 +56,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           Diese Seite konnte nicht geladen werden
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Etwas ist auf unserer Seite schiefgelaufen. Sie können es erneut versuchen oder zur Startseite zurückkehren.
+          Etwas ist auf unserer Seite schiefgelaufen. Sie können es erneut versuchen oder zur
+          Startseite zurückkehren.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -85,10 +87,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "VDT Touristik GmbH Berlin" },
-      { name: "description", content: "Ihr Reisebüro in Berlin – persönliche Beratung, Flugtickets und Reiseangebote. IATA akkreditierter Agent." },
+      {
+        name: "description",
+        content:
+          "Ihr Reisebüro in Berlin – persönliche Beratung, Flugtickets und Reiseangebote. IATA akkreditierter Agent.",
+      },
       { name: "author", content: "VDT Touristik GmbH" },
       { property: "og:title", content: "VDT Touristik GmbH Berlin" },
-      { property: "og:description", content: "Ihr Reisebüro in Berlin – persönliche Beratung, Flugtickets und Reiseangebote. IATA akkreditierter Agent." },
+      {
+        property: "og:description",
+        content:
+          "Ihr Reisebüro in Berlin – persönliche Beratung, Flugtickets und Reiseangebote. IATA akkreditierter Agent.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "VDT Touristik GmbH Berlin" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -172,13 +182,33 @@ function LanguageSwitcher() {
 
 function Header() {
   const { t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      className={`sticky top-0 z-50 w-full border-b bg-background/90 backdrop-blur-md transition-shadow duration-300 supports-[backdrop-filter]:bg-background/70 ${
+        scrolled ? "border-border shadow-md shadow-black/5" : "border-transparent"
+      }`}
+    >
       <div className="container-vdt flex h-16 items-center justify-between gap-2">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={vdtLogo} alt="VDT Touristik GmbH Logo" className="h-9 w-auto" width={364} height={176} />
-          <span className="hidden text-sm font-medium text-foreground sm:inline">Touristik GmbH</span>
+        <Link to="/" className="group flex items-center gap-3">
+          <img
+            src={vdtLogo}
+            alt="VDT Touristik GmbH Logo"
+            className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
+            width={364}
+            height={176}
+          />
+          <span className="hidden text-sm font-medium text-foreground sm:inline">
+            Touristik GmbH
+          </span>
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-4">
@@ -190,18 +220,18 @@ function Header() {
           <div className="hidden items-center gap-2 md:flex">
             <a
               href={`tel:${COMPANY.phoneHref}`}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-vdt-red"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-vdt-red"
             >
-              <Phone className="h-4 w-4 text-vdt-red" />
+              <Phone className="h-4 w-4 text-vdt-red transition-transform group-hover:rotate-12" />
               {COMPANY.phone}
             </a>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center gap-1.5 rounded-md bg-vdt-gold px-3 py-1.5 text-sm font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+              className="group inline-flex items-center gap-1.5 rounded-md bg-vdt-gold px-3 py-1.5 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-gold-dark hover:shadow-md hover:shadow-vdt-gold/30"
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
               {t.common.whatsapp}
             </a>
           </div>
@@ -271,12 +301,18 @@ function Footer() {
             <h3 className="font-heading text-lg font-semibold">{t.footer.legal}</h3>
             <ul className="mt-2 space-y-2 text-sm">
               <li>
-                <Link to="/impressum" className="text-primary-foreground/80 transition-colors hover:text-primary-foreground">
+                <Link
+                  to="/impressum"
+                  className="text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+                >
                   {t.footer.imprint}
                 </Link>
               </li>
               <li>
-                <Link to="/datenschutz" className="text-primary-foreground/80 transition-colors hover:text-primary-foreground">
+                <Link
+                  to="/datenschutz"
+                  className="text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+                >
                   {t.footer.privacy}
                 </Link>
               </li>
@@ -294,10 +330,10 @@ function Footer() {
         </div>
         <div className="mt-8 border-t border-primary-foreground/10 pt-8 text-center text-xs text-primary-foreground/60">
           <p>
-            &copy; {new Date().getFullYear()} {COMPANY.name} Berlin. {t.footer.rights} · {t.company.seat}
+            &copy; {new Date().getFullYear()} {COMPANY.name} Berlin. {t.footer.rights} ·{" "}
+            {t.company.seat}
           </p>
         </div>
-
       </div>
     </footer>
   );
