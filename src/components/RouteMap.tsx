@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, MapPin } from "lucide-react";
-import { FLIGHTS, ORIGIN, formatLayover } from "../lib/flight-data";
+import { FLIGHTS, ORIGINS, formatLayover } from "../lib/flight-data";
 import { WORLD_LAND_PATH } from "../lib/world-map-path";
 import { useLanguage } from "../lib/i18n";
 import { Reveal } from "./Reveal";
+
+export const SELECT_DESTINATION_EVENT = "vdt:select-destination";
 
 // Statische Weltkarte (SVG, equirectangular) mit Berlin als Ausgangspunkt.
 // Kein Live-Preisvergleich, keine externe API – Hover zeigt Airline/Preis/Umsteigezeit.
@@ -27,8 +29,12 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
   const { t } = useLanguage();
   const [hovered, setHovered] = useState<string | null>(null);
   const [selected, setSelected] = useState<string>(FLIGHTS[0]!.id);
+  const [originCode, setOriginCode] = useState<string>(ORIGINS[0]!.code);
   const [mapVisible, setMapVisible] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
+
+  const origin = ORIGINS.find((o) => o.code === originCode) ?? ORIGINS[0]!;
+  const originCity = origin.label.replace(/\s*\(.+\)$/, "");
 
   const activeId = hovered ?? null;
   const active = FLIGHTS.find((f) => f.id === activeId) ?? null;
@@ -57,23 +63,36 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
     return () => observer.disconnect();
   }, []);
 
+  // erlaubt anderen Komponenten (z.B. den Zielkarten), hier ein Ziel vorzuwählen
+  useEffect(() => {
+    const onSelect = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail;
+      if (FLIGHTS.some((f) => f.id === id)) setSelected(id);
+    };
+    window.addEventListener(SELECT_DESTINATION_EVENT, onSelect);
+    return () => window.removeEventListener(SELECT_DESTINATION_EVENT, onSelect);
+  }, []);
+
   const scrollToAnchor = () => {
     document.getElementById(anchorId)?.scrollIntoView({ behavior: "smooth", block: "start" });
     const subject = document.querySelector<HTMLInputElement>("#subject");
-    if (subject) subject.value = `Berlin – ${t.routes.cities[selected] ?? ""}`;
+    if (subject) subject.value = `${originCity} – ${t.routes.cities[selected] ?? ""}`;
   };
 
   const tooltipTarget = lastActive;
 
   return (
-    <section className="relative overflow-hidden gradient-ink py-16 text-primary-foreground sm:py-20">
+    <section
+      id="karte"
+      className="relative scroll-mt-20 overflow-hidden gradient-ink py-16 text-primary-foreground sm:py-20"
+    >
       {/* dekorative Glow-Blobs */}
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 animate-float-a rounded-full bg-vdt-red/25 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 animate-float-b rounded-full bg-vdt-gold/20 blur-3xl" />
 
       <div className="container-vdt relative">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow text-vdt-gold">{ORIGIN.label}</p>
+          <p className="eyebrow text-vdt-gold">{origin.label}</p>
           <h2 className="mt-2 font-heading text-3xl font-bold sm:text-4xl">{t.map.title}</h2>
           <p className="mt-4 text-primary-foreground/70">{t.map.lead}</p>
         </Reveal>
@@ -92,10 +111,15 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
             </label>
             <select
               id="map-from"
-              defaultValue="BER"
+              value={originCode}
+              onChange={(e) => setOriginCode(e.target.value)}
               className="mt-1 w-full rounded-md border border-primary-foreground/20 bg-vdt-ink-soft px-3 py-2 text-sm text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-vdt-gold"
             >
-              <option value="BER">{ORIGIN.label}</option>
+              {ORIGINS.map((o) => (
+                <option key={o.code} value={o.code}>
+                  {o.label}
+                </option>
+              ))}
             </select>
           </div>
           <div>
@@ -151,11 +175,11 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
 
             {FLIGHTS.map((f, i) => {
               const isActive = activeId === f.id || selected === f.id;
-              const len = arcLength(ORIGIN.x, ORIGIN.y, f.x, f.y);
+              const len = arcLength(origin.x, origin.y, f.x, f.y);
               return (
                 <g key={f.id}>
                   <path
-                    d={arc(ORIGIN.x, ORIGIN.y, f.x, f.y)}
+                    d={arc(origin.x, origin.y, f.x, f.y)}
                     fill="none"
                     stroke={isActive ? "oklch(0.8 0.15 84)" : "oklch(0.535 0.215 24)"}
                     strokeWidth={isActive ? 2.2 : 1.1}
@@ -173,7 +197,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                   />
                   {isActive && (
                     <path
-                      d={arc(ORIGIN.x, ORIGIN.y, f.x, f.y)}
+                      d={arc(origin.x, origin.y, f.x, f.y)}
                       fill="none"
                       stroke="oklch(0.985 0.008 80)"
                       strokeWidth="1.4"
@@ -194,7 +218,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                   />
                   {/* großzügige Hover-Fläche über der Linie */}
                   <path
-                    d={arc(ORIGIN.x, ORIGIN.y, f.x, f.y)}
+                    d={arc(origin.x, origin.y, f.x, f.y)}
                     fill="none"
                     stroke="transparent"
                     strokeWidth="12"
@@ -205,49 +229,51 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                     onBlur={() => setHovered(null)}
                     onClick={() => setSelected(f.id)}
                     tabIndex={0}
-                    aria-label={`Berlin – ${t.routes.cities[f.id]}`}
+                    aria-label={`${originCity} – ${t.routes.cities[f.id]}`}
                   />
-                  <text
-                    x={f.x + 7}
-                    y={f.y + 3}
-                    fontSize="7"
-                    fill={isActive ? "oklch(0.8 0.15 84)" : "oklch(0.85 0.01 80)"}
-                    className="pointer-events-none font-medium"
-                    style={{ transition: "fill 0.35s ease" }}
-                  >
-                    {t.routes.cities[f.id]}
-                  </text>
+                  {isActive && (
+                    <text
+                      x={f.x + (f.labelDx ?? 7)}
+                      y={f.y + (f.labelDy ?? 3)}
+                      textAnchor={f.labelAnchor ?? "start"}
+                      fontSize="7.5"
+                      fill="oklch(0.8 0.15 84)"
+                      className="pointer-events-none font-semibold"
+                    >
+                      {t.routes.cities[f.id]}
+                    </text>
+                  )}
                 </g>
               );
             })}
 
             {/* pulsierende Ringe um Berlin */}
             <circle
-              cx={ORIGIN.x}
-              cy={ORIGIN.y}
+              cx={origin.x}
+              cy={origin.y}
               r="4.5"
               fill="url(#origin-glow)"
               className="animate-pulse-ring"
-              style={{ transformOrigin: `${ORIGIN.x}px ${ORIGIN.y}px` }}
+              style={{ transformOrigin: `${origin.x}px ${origin.y}px` }}
             />
             <circle
-              cx={ORIGIN.x}
-              cy={ORIGIN.y}
+              cx={origin.x}
+              cy={origin.y}
               r="4.5"
               fill="url(#origin-glow)"
               className="animate-pulse-ring"
-              style={{ transformOrigin: `${ORIGIN.x}px ${ORIGIN.y}px`, animationDelay: "1.1s" }}
+              style={{ transformOrigin: `${origin.x}px ${origin.y}px`, animationDelay: "1.1s" }}
             />
-            <circle cx={ORIGIN.x} cy={ORIGIN.y} r="4.5" fill="oklch(0.985 0.008 80)" />
+            <circle cx={origin.x} cy={origin.y} r="4.5" fill="oklch(0.985 0.008 80)" />
             <text
-              x={ORIGIN.x - 4}
-              y={ORIGIN.y - 8}
+              x={origin.x - 4}
+              y={origin.y - 8}
               fontSize="8"
               textAnchor="end"
               fill="oklch(0.985 0.008 80)"
               className="font-semibold"
             >
-              Berlin
+              {originCity}
             </text>
           </svg>
 
@@ -263,7 +289,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
               }}
             >
               <p className="font-heading text-sm font-bold">
-                Berlin – {t.routes.cities[tooltipTarget.id]}
+                {originCity} – {t.routes.cities[tooltipTarget.id]}
               </p>
               <p className="mt-1 text-xs text-primary-foreground/70">
                 {tooltipTarget.airlines.join(" · ")}

@@ -55,15 +55,18 @@ const de = {
       },
       {
         title: "Beste Konditionen als IATA-Agent",
-        description: "Direkter Zugang zu Airline-Tarifen und Sonderkonditionen, die online oft nicht verfügbar sind.",
+        description:
+          "Direkter Zugang zu Airline-Tarifen und Sonderkonditionen, die online oft nicht verfügbar sind.",
       },
       {
         title: "Persönliche Beratung",
-        description: "Umbuchungen, Gepäck, Anschlüsse: Wir beraten Sie vor Ort in Berlin und bleiben erreichbar.",
+        description:
+          "Umbuchungen, Gepäck, Anschlüsse: Wir beraten Sie vor Ort in Berlin und bleiben erreichbar.",
       },
       {
         title: "Vietnam-Spezialist seit 199X",
-        description: "Langjährige Erfahrung mit Flügen nach Vietnam und Südostasien – inklusive Visa-Hilfe.",
+        description:
+          "Langjährige Erfahrung mit Flügen nach Vietnam und Südostasien – inklusive Visa-Hilfe.",
       },
     ],
   },
@@ -76,47 +79,84 @@ const de = {
       hanoi: "Hanoi",
       saigon: "Ho-Chi-Minh-Stadt",
       danang: "Da Nang",
+      nhatrang: "Nha Trang",
+      phuquoc: "Phu Quoc",
+      hue: "Hue",
       bangkok: "Bangkok",
       singapore: "Singapur",
+      kualalumpur: "Kuala Lumpur",
+      phnompenh: "Phnom Penh",
+      bali: "Bali",
       seoul: "Seoul",
       tokyo: "Tokio",
       manila: "Manila",
+      dubai: "Dubai",
+    } as Record<string, string>,
+    teasers: {
+      hanoi: "Altstadt, Halong-Bucht und Straßenküche im Norden Vietnams.",
+      saigon: "Pulsierende Millionenmetropole im Süden Vietnams.",
+      danang: "Traumstrände und Marmorberge an der Zentralküste.",
+      nhatrang: "Türkisblaues Wasser und die längste Seilbahn Vietnams.",
+      phuquoc: "Vietnams Inselparadies mit Sonnenuntergängen am Meer.",
+      hue: "Kaiserstadt mit Zitadelle und Grabmälern am Parfümfluss.",
+      bangkok: "Tempel, Streetfood und Großstadtflair in Thailand.",
+      singapore: "Gardens by the Bay und moderne Skyline in einem.",
+      kualalumpur: "Petronas Towers und Vielfalt zwischen Ost und West.",
+      phnompenh: "Königspalast und bewegte Geschichte in Kambodscha.",
+      bali: "Reisterrassen, Tempel und Traumstrände in Indonesien.",
+      seoul: "K-Pop, Paläste und Streetfood in Südkorea.",
+      tokyo: "Tradition trifft Zukunft in Japans Hauptstadt.",
+      manila: "Tor zu den Philippinen mit über 7.000 Inseln.",
+      dubai: "Luxus, Wüste und Wolkenkratzer in den Emiraten.",
     } as Record<string, string>,
   },
   map: {
     title: "Unsere Strecken auf der Karte",
-    lead: "Berlin ist Ihr Startpunkt. Fahren Sie mit der Maus über eine Linie, um Airline, Umsteigezeit und Richtpreis zu sehen.",
+    lead: "Wählen Sie Ihren Abflughafen. Fahren Sie mit der Maus über eine Linie, um Airline, Umsteigezeit und Richtpreis zu sehen.",
     departure: "Abflughafen",
     destination: "Zielflughafen",
     chooseDestination: "Ziel wählen",
     cta: "Strecke anfragen",
     note: "Kein Live-Preisvergleich – wir prüfen Ihre Wunschtermine persönlich und melden uns mit dem besten Tarif.",
   },
+  destinationCards: {
+    title: "Reiseziele entdecken",
+    lead: "Zum Durchswipen: unsere beliebtesten Ziele ab Berlin.",
+  },
   testimonials: {
-    title: "Kundenstimmen",
-    lead: "Was unsere Kundinnen und Kunden über die Beratung bei VDT Touristik sagen. (Platzhaltertexte)",
+    title: "Google-Bewertungen",
+    lead: "Ausgewählte Stimmen zufriedener Kundinnen und Kunden. (Platzhalterinhalte – werden durch echte Google-Bewertungen ersetzt)",
+    ratingSummary: "4,8 von 5",
+    ratingCount: "128 Bewertungen auf Google",
+    filterNote: "Gefiltert: nur 4- und 5-Sterne-Bewertungen",
     items: [
       {
         quote:
           "Platzhalter: Hier steht später eine echte Kundenstimme über die persönliche Beratung und den schnellen Ticketkauf.",
         name: "M. Nguyen",
         meta: "Berlin – Hanoi",
+        rating: 5,
       },
       {
         quote:
           "Platzhalter: Hier steht später eine echte Kundenstimme über Umbuchung und Gepäckfragen kurz vor dem Abflug.",
         name: "T. Pham",
         meta: "Berlin – Ho-Chi-Minh-Stadt",
+        rating: 5,
       },
       {
-        quote: "Platzhalter: Hier steht später eine echte Kundenstimme über Familientarife und Gruppenbuchungen.",
+        quote:
+          "Platzhalter: Hier steht später eine echte Kundenstimme über Familientarife und Gruppenbuchungen.",
         name: "S. Weber",
         meta: "Berlin – Bangkok",
+        rating: 4,
       },
       {
-        quote: "Platzhalter: Hier steht später eine echte Kundenstimme über die Hilfe beim Vietnam E-Visa.",
+        quote:
+          "Platzhalter: Hier steht später eine echte Kundenstimme über die Hilfe beim Vietnam E-Visa.",
         name: "L. Tran",
         meta: "Berlin – Da Nang",
+        rating: 5,
       },
     ],
   },
@@ -187,7 +227,8 @@ const de = {
     register: "Handelsregister",
     seat: "Sitz der Gesellschaft und Gerichtsstand Berlin",
     partnerTitle: "Unsere Partner & Akkreditierungen",
-    partnerLead: "Autorisierte Vietnam Airlines Agentur in Deutschland und IATA akkreditierter Agent.",
+    partnerLead:
+      "Autorisierte Vietnam Airlines Agentur in Deutschland und IATA akkreditierter Agent.",
   },
 };
 
@@ -240,15 +281,18 @@ const vi: Dict = {
       },
       {
         title: "Giá tốt nhất với tư cách đại lý IATA",
-        description: "Truy cập trực tiếp giá vé và ưu đãi đặc biệt của hãng, thường không có trên mạng.",
+        description:
+          "Truy cập trực tiếp giá vé và ưu đãi đặc biệt của hãng, thường không có trên mạng.",
       },
       {
         title: "Tư vấn tận tình",
-        description: "Đổi vé, hành lý, nối chuyến: chúng tôi tư vấn trực tiếp tại Berlin và luôn sẵn sàng hỗ trợ.",
+        description:
+          "Đổi vé, hành lý, nối chuyến: chúng tôi tư vấn trực tiếp tại Berlin và luôn sẵn sàng hỗ trợ.",
       },
       {
         title: "Chuyên gia Việt Nam từ 199X",
-        description: "Nhiều năm kinh nghiệm với các chuyến bay đi Việt Nam và Đông Nam Á – hỗ trợ cả visa.",
+        description:
+          "Nhiều năm kinh nghiệm với các chuyến bay đi Việt Nam và Đông Nam Á – hỗ trợ cả visa.",
       },
     ],
   },
@@ -261,45 +305,83 @@ const vi: Dict = {
       hanoi: "Hà Nội",
       saigon: "TP. Hồ Chí Minh",
       danang: "Đà Nẵng",
+      nhatrang: "Nha Trang",
+      phuquoc: "Phú Quốc",
+      hue: "Huế",
       bangkok: "Bangkok",
       singapore: "Singapore",
+      kualalumpur: "Kuala Lumpur",
+      phnompenh: "Phnom Penh",
+      bali: "Bali",
       seoul: "Seoul",
       tokyo: "Tokyo",
       manila: "Manila",
+      dubai: "Dubai",
+    } as Record<string, string>,
+    teasers: {
+      hanoi: "Phố cổ, vịnh Hạ Long và ẩm thực đường phố miền Bắc.",
+      saigon: "Đô thị sôi động bậc nhất miền Nam Việt Nam.",
+      danang: "Bãi biển tuyệt đẹp và Ngũ Hành Sơn ở miền Trung.",
+      nhatrang: "Biển xanh ngọc và tuyến cáp treo dài nhất Việt Nam.",
+      phuquoc: "Đảo ngọc với hoàng hôn tuyệt đẹp trên biển.",
+      hue: "Cố đô với Đại Nội và lăng tẩm bên sông Hương.",
+      bangkok: "Đền chùa, ẩm thực đường phố và nhịp sống đô thị Thái Lan.",
+      singapore: "Gardens by the Bay và đường chân trời hiện đại.",
+      kualalumpur: "Tháp đôi Petronas và sự giao thoa Đông – Tây.",
+      phnompenh: "Hoàng cung và lịch sử đầy biến động của Campuchia.",
+      bali: "Ruộng bậc thang, đền thờ và bãi biển tuyệt đẹp ở Indonesia.",
+      seoul: "K-Pop, cung điện và ẩm thực đường phố Hàn Quốc.",
+      tokyo: "Truyền thống gặp gỡ tương lai tại thủ đô Nhật Bản.",
+      manila: "Cửa ngõ đến hơn 7.000 hòn đảo của Philippines.",
+      dubai: "Sang trọng, sa mạc và những tòa tháp chọc trời.",
     } as Record<string, string>,
   },
   map: {
     title: "Các chặng bay trên bản đồ",
-    lead: "Berlin là điểm khởi hành. Đưa chuột lên đường bay để xem hãng bay, thời gian nối chuyến và giá tham khảo.",
+    lead: "Chọn sân bay khởi hành của bạn. Đưa chuột lên đường bay để xem hãng bay, thời gian nối chuyến và giá tham khảo.",
     departure: "Sân bay khởi hành",
     destination: "Sân bay đến",
     chooseDestination: "Chọn điểm đến",
     cta: "Gửi yêu cầu chặng bay",
     note: "Không so sánh giá trực tuyến – chúng tôi kiểm tra ngày bay bạn muốn và báo lại mức giá tốt nhất.",
   },
+  destinationCards: {
+    title: "Khám phá điểm đến",
+    lead: "Vuốt để xem: những điểm đến được yêu thích nhất từ Berlin.",
+  },
   testimonials: {
-    title: "Khách hàng nói gì",
-    lead: "Cảm nhận của khách hàng về dịch vụ tư vấn tại VDT Touristik. (Nội dung mẫu)",
+    title: "Đánh giá trên Google",
+    lead: "Một số cảm nhận nổi bật từ khách hàng. (Nội dung mẫu – sẽ thay bằng đánh giá Google thật)",
+    ratingSummary: "4,8/5",
+    ratingCount: "128 đánh giá trên Google",
+    filterNote: "Đã lọc: chỉ hiển thị đánh giá 4–5 sao",
     items: [
       {
-        quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về tư vấn tận tình và mua vé nhanh chóng.",
+        quote:
+          "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về tư vấn tận tình và mua vé nhanh chóng.",
         name: "M. Nguyên",
         meta: "Berlin – Hà Nội",
+        rating: 5,
       },
       {
-        quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về đổi vé và hành lý trước chuyến bay.",
+        quote:
+          "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về đổi vé và hành lý trước chuyến bay.",
         name: "T. Phạm",
         meta: "Berlin – TP. Hồ Chí Minh",
+        rating: 5,
       },
       {
-        quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về giá vé gia đình và đặt vé theo nhóm.",
+        quote:
+          "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về giá vé gia đình và đặt vé theo nhóm.",
         name: "S. Weber",
         meta: "Berlin – Bangkok",
+        rating: 4,
       },
       {
         quote: "Nội dung mẫu: sau này sẽ là nhận xét thật của khách về hỗ trợ xin E-Visa Việt Nam.",
         name: "L. Trần",
         meta: "Berlin – Đà Nẵng",
+        rating: 5,
       },
     ],
   },
@@ -347,7 +429,8 @@ const vi: Dict = {
     hoursWeek: "Thứ 2–Thứ 6: 9:00–17:00",
     hoursWeekend: "Thứ 7–Chủ nhật: đóng cửa",
     iataTitle: "Được IATA công nhận",
-    iataText: "VDT Touristik GmbH là đại lý được IATA công nhận – bảo đảm dịch vụ vé máy bay uy tín, chuyên nghiệp.",
+    iataText:
+      "VDT Touristik GmbH là đại lý được IATA công nhận – bảo đảm dịch vụ vé máy bay uy tín, chuyên nghiệp.",
     formTitle: "Mẫu liên hệ",
     formLead: "Điền thông tin và chúng tôi sẽ phản hồi trong vòng một ngày làm việc.",
     name: "Họ và tên",
@@ -375,7 +458,9 @@ const vi: Dict = {
 
 const en: Dict = {
   nav: { home: "Home", flights: "Destinations", contact: "Contact" },
-  brand: { tagline: "Your flight ticket specialist in Berlin – worldwide tickets, personal advice." },
+  brand: {
+    tagline: "Your flight ticket specialist in Berlin – worldwide tickets, personal advice.",
+  },
   common: {
     back: "Back to home",
     perPerson: "per person, one way",
@@ -420,15 +505,18 @@ const en: Dict = {
       },
       {
         title: "Best rates as an IATA agent",
-        description: "Direct access to airline fares and special conditions that are often not available online.",
+        description:
+          "Direct access to airline fares and special conditions that are often not available online.",
       },
       {
         title: "Personal advice",
-        description: "Rebooking, baggage, connections: we advise you in person in Berlin and stay reachable.",
+        description:
+          "Rebooking, baggage, connections: we advise you in person in Berlin and stay reachable.",
       },
       {
         title: "Vietnam specialist since 199X",
-        description: "Many years of experience with flights to Vietnam and Southeast Asia – visa support included.",
+        description:
+          "Many years of experience with flights to Vietnam and Southeast Asia – visa support included.",
       },
     ],
   },
@@ -441,45 +529,82 @@ const en: Dict = {
       hanoi: "Hanoi",
       saigon: "Ho Chi Minh City",
       danang: "Da Nang",
+      nhatrang: "Nha Trang",
+      phuquoc: "Phu Quoc",
+      hue: "Hue",
       bangkok: "Bangkok",
       singapore: "Singapore",
+      kualalumpur: "Kuala Lumpur",
+      phnompenh: "Phnom Penh",
+      bali: "Bali",
       seoul: "Seoul",
       tokyo: "Tokyo",
       manila: "Manila",
+      dubai: "Dubai",
+    } as Record<string, string>,
+    teasers: {
+      hanoi: "Old Quarter, Halong Bay and street food in northern Vietnam.",
+      saigon: "Vietnam's buzzing southern megacity.",
+      danang: "Dream beaches and the Marble Mountains on the central coast.",
+      nhatrang: "Turquoise water and Vietnam's longest cable car.",
+      phuquoc: "Vietnam's island paradise with sunsets over the sea.",
+      hue: "Imperial city with citadel and royal tombs on the Perfume River.",
+      bangkok: "Temples, street food and big-city energy in Thailand.",
+      singapore: "Gardens by the Bay and a modern skyline in one city.",
+      kualalumpur: "Petronas Towers and a mix of East and West.",
+      phnompenh: "Royal palace and eventful history in Cambodia.",
+      bali: "Rice terraces, temples and dream beaches in Indonesia.",
+      seoul: "K-pop, palaces and street food in South Korea.",
+      tokyo: "Tradition meets the future in Japan's capital.",
+      manila: "Gateway to over 7,000 islands in the Philippines.",
+      dubai: "Luxury, desert and skyscrapers in the Emirates.",
     } as Record<string, string>,
   },
   map: {
     title: "Our routes on the map",
-    lead: "Berlin is your starting point. Hover a line to see airline, layover and guide price.",
+    lead: "Choose your departure airport. Hover a line to see airline, layover and guide price.",
     departure: "Departure airport",
     destination: "Destination airport",
     chooseDestination: "Choose destination",
     cta: "Request this route",
     note: "No live price comparison – we check your preferred dates personally and come back with the best fare.",
   },
+  destinationCards: {
+    title: "Discover destinations",
+    lead: "Swipe through our most popular destinations from Berlin.",
+  },
   testimonials: {
-    title: "What our customers say",
-    lead: "Feedback about the advice at VDT Touristik. (Placeholder texts)",
+    title: "Google reviews",
+    lead: "A selection of feedback from happy customers. (Placeholder content – will be replaced with real Google reviews)",
+    ratingSummary: "4.8 out of 5",
+    ratingCount: "128 reviews on Google",
+    filterNote: "Filtered: showing 4- and 5-star reviews only",
     items: [
       {
-        quote: "Placeholder: a real customer quote about personal advice and fast ticketing will go here.",
+        quote:
+          "Placeholder: a real customer quote about personal advice and fast ticketing will go here.",
         name: "M. Nguyen",
         meta: "Berlin – Hanoi",
+        rating: 5,
       },
       {
-        quote: "Placeholder: a real customer quote about rebooking and baggage questions before departure.",
+        quote:
+          "Placeholder: a real customer quote about rebooking and baggage questions before departure.",
         name: "T. Pham",
         meta: "Berlin – Ho Chi Minh City",
+        rating: 5,
       },
       {
         quote: "Placeholder: a real customer quote about family fares and group bookings.",
         name: "S. Weber",
         meta: "Berlin – Bangkok",
+        rating: 4,
       },
       {
         quote: "Placeholder: a real customer quote about help with the Vietnam e-visa.",
         name: "L. Tran",
         meta: "Berlin – Da Nang",
+        rating: 5,
       },
     ],
   },
@@ -585,7 +710,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  return <LanguageContext.Provider value={{ lang, setLang, t: dicts[lang] }}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={{ lang, setLang, t: dicts[lang] }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLanguage() {

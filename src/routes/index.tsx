@@ -16,6 +16,7 @@ import { useLanguage } from "../lib/i18n";
 import { COMPANY, WHATSAPP_URL } from "../lib/company";
 import { FlightGrid } from "../components/FlightRoutes";
 import { RouteMap } from "../components/RouteMap";
+import { DestinationCards } from "../components/DestinationCards";
 import { Testimonials } from "../components/Testimonials";
 import { Faq } from "../components/Faq";
 import { Reveal } from "../components/Reveal";
@@ -46,9 +47,10 @@ function HomePage() {
   return (
     <>
       <HeroSection />
+      <RouteMap anchorId="anfrage" />
+      <DestinationCards />
       <HighlightsSection />
       <RoutesSection />
-      <RouteMap anchorId="anfrage" />
       <PartnerSection />
       <Testimonials />
       <Faq />
