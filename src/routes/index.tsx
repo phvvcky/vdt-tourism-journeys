@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import {
   Plane,
   MapPin,
@@ -17,9 +18,13 @@ import { COMPANY, WHATSAPP_URL } from "../lib/company";
 import { FlightGrid } from "../components/FlightRoutes";
 import { RouteMap } from "../components/RouteMap";
 import { DestinationCards } from "../components/DestinationCards";
+import { PartnerMarquee } from "../components/PartnerMarquee";
+import { Stats } from "../components/Stats";
 import { Testimonials } from "../components/Testimonials";
 import { Faq } from "../components/Faq";
 import { Reveal } from "../components/Reveal";
+import { KineticHeadline } from "../components/KineticHeadline";
+import { MagneticButton } from "../components/MagneticButton";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,8 +52,10 @@ function HomePage() {
   return (
     <>
       <HeroSection />
+      <PartnerMarquee />
       <RouteMap anchorId="anfrage" />
       <DestinationCards />
+      <Stats />
       <HighlightsSection />
       <RoutesSection />
       <PartnerSection />
@@ -61,17 +68,44 @@ function HomePage() {
 
 function HeroSection() {
   const { t } = useLanguage();
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = parallaxRef.current;
+    if (!el) return;
+    const canParallax =
+      window.matchMedia("(min-width: 768px)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!canParallax) return;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY * 0.12, 60);
+        el.style.transform = `translateY(${y}px) scale(1.08)`;
+        ticking = false;
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section className="relative overflow-hidden gradient-ink">
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt={t.hero.title}
-          className="h-full w-full object-cover opacity-35 grayscale-[35%]"
-          width={1920}
-          height={720}
-          fetchPriority="high"
-        />
+        <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
+          <img
+            src={heroImage}
+            alt={t.hero.title}
+            className="h-full w-full object-cover opacity-35 grayscale-[35%]"
+            width={1920}
+            height={720}
+            fetchPriority="high"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-vdt-ink via-vdt-ink/90 to-vdt-red-dark/60" />
       </div>
 
@@ -89,27 +123,32 @@ function HeroSection() {
             <span className="h-px w-8 bg-vdt-gold" />
             {t.hero.badge}
           </p>
-          <h1 className="mt-5 font-heading text-4xl font-extrabold sm:text-5xl lg:text-6xl">
-            {t.hero.title}
-          </h1>
+          <KineticHeadline
+            text={t.hero.title}
+            className="mt-5 font-heading text-4xl font-extrabold sm:text-5xl lg:text-6xl"
+          />
           <p className="mt-6 max-w-xl text-lg text-primary-foreground/75">{t.hero.lead}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={`tel:${COMPANY.phoneHref}`}
-              className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-red/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-flame/30 active:translate-y-0"
-            >
-              <Phone className="h-4 w-4 transition-transform group-hover:rotate-12" />
-              {COMPANY.phone}
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-gold px-5 py-3 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-gold-dark hover:shadow-lg hover:shadow-vdt-gold/30 active:translate-y-0"
-            >
-              <MessageCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
-              {t.common.whatsapp}
-            </a>
+            <MagneticButton>
+              <a
+                href={`tel:${COMPANY.phoneHref}`}
+                className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-red/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-flame/30 active:translate-y-0"
+              >
+                <Phone className="h-4 w-4 transition-transform group-hover:rotate-12" />
+                {COMPANY.phone}
+              </a>
+            </MagneticButton>
+            <MagneticButton>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-gold px-5 py-3 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-gold-dark hover:shadow-lg hover:shadow-vdt-gold/30 active:translate-y-0"
+              >
+                <MessageCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
+                {t.common.whatsapp}
+              </a>
+            </MagneticButton>
             <Link
               to="/angebote"
               className="group inline-flex items-center justify-center gap-2 rounded-md border border-primary-foreground/25 px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:border-primary-foreground/50 hover:bg-primary-foreground/10"

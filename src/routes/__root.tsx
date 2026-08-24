@@ -13,7 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider, useLanguage, LANGS } from "../lib/i18n";
 import { COMPANY, WHATSAPP_URL } from "../lib/company";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, Check } from "lucide-react";
 import vdtLogo from "../assets/vdt-logo.png";
 import iataLogo from "../assets/iata-accredited-agent.png";
 import vnAirlines from "../assets/vietnam-airlines.jpg";
@@ -218,13 +218,7 @@ function Header() {
             <NavLink to="/kontakt">{t.nav.contact}</NavLink>
           </nav>
           <div className="hidden items-center gap-2 md:flex">
-            <a
-              href={`tel:${COMPANY.phoneHref}`}
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-vdt-red"
-            >
-              <Phone className="h-4 w-4 text-vdt-red transition-transform group-hover:rotate-12" />
-              {COMPANY.phone}
-            </a>
+            <CopyablePhone />
             <a
               href={WHATSAPP_URL}
               target="_blank"
@@ -246,11 +240,52 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <Link
       to={to}
-      activeProps={{ className: "text-primary font-semibold" }}
-      className="rounded-md px-1.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:px-2"
+      activeProps={{ className: "nav-underline-active text-primary font-semibold" }}
+      className="nav-underline rounded-md px-1.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:px-2"
     >
       {children}
     </Link>
+  );
+}
+
+// Telefonnummer: Klick mit Maus (Desktop) kopiert die Nummer mit kurzem Feedback,
+// Tap auf Touch-Geräten öffnet weiterhin ganz normal die Wähl-App.
+function CopyablePhone() {
+  const { t } = useLanguage();
+  const [copied, setCopied] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const canHover = window.matchMedia("(pointer: fine)").matches;
+    if (!canHover) return;
+    e.preventDefault();
+    navigator.clipboard.writeText(COMPANY.phone).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
+
+  return (
+    <div className="relative">
+      <a
+        href={`tel:${COMPANY.phoneHref}`}
+        onClick={handleClick}
+        title={t.common.copyPhone}
+        className="group inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-vdt-red"
+      >
+        <Phone className="h-4 w-4 text-vdt-red transition-transform group-hover:rotate-12" />
+        {COMPANY.phone}
+      </a>
+      <span
+        className={`pointer-events-none absolute left-1/2 top-full z-10 mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-vdt-ink px-2 py-1 text-xs font-medium text-primary-foreground shadow-lg transition-all duration-200 ${
+          copied ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+        }`}
+      >
+        <span className="inline-flex items-center gap-1">
+          <Check className="h-3 w-3 text-vdt-gold" />
+          {t.common.phoneCopied}
+        </span>
+      </span>
+    </div>
   );
 }
 

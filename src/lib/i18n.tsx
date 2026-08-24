@@ -28,6 +28,8 @@ const de = {
     oneWay: "einfach",
     hourShort: "h",
     minuteShort: "min",
+    copyPhone: "Nummer kopieren",
+    phoneCopied: "Kopiert!",
   },
   footer: {
     contact: "Kontakt",
@@ -122,6 +124,12 @@ const de = {
   destinationCards: {
     title: "Reiseziele entdecken",
     lead: "Zum Durchswipen: unsere beliebtesten Ziele ab Berlin.",
+  },
+  stats: {
+    years: "Jahre Erfahrung",
+    destinations: "Reiseziele",
+    airports: "Abflughäfen",
+    airlines: "Partner-Airlines",
   },
   testimonials: {
     title: "Google-Bewertungen",
@@ -254,6 +262,8 @@ const vi: Dict = {
     oneWay: "một chiều",
     hourShort: "g",
     minuteShort: "ph",
+    copyPhone: "Sao chép số",
+    phoneCopied: "Đã sao chép!",
   },
   footer: {
     contact: "Liên hệ",
@@ -348,6 +358,12 @@ const vi: Dict = {
   destinationCards: {
     title: "Khám phá điểm đến",
     lead: "Vuốt để xem: những điểm đến được yêu thích nhất từ Berlin.",
+  },
+  stats: {
+    years: "năm kinh nghiệm",
+    destinations: "điểm đến",
+    airports: "sân bay khởi hành",
+    airlines: "hãng bay đối tác",
   },
   testimonials: {
     title: "Đánh giá trên Google",
@@ -478,6 +494,8 @@ const en: Dict = {
     oneWay: "one way",
     hourShort: "h",
     minuteShort: "min",
+    copyPhone: "Copy number",
+    phoneCopied: "Copied!",
   },
   footer: {
     contact: "Contact",
@@ -572,6 +590,12 @@ const en: Dict = {
   destinationCards: {
     title: "Discover destinations",
     lead: "Swipe through our most popular destinations from Berlin.",
+  },
+  stats: {
+    years: "Years of experience",
+    destinations: "Destinations",
+    airports: "Departure airports",
+    airlines: "Partner airlines",
   },
   testimonials: {
     title: "Google reviews",

@@ -4,6 +4,7 @@ import { FLIGHTS, ORIGINS, formatLayover } from "../lib/flight-data";
 import { WORLD_LAND_PATH } from "../lib/world-map-path";
 import { useLanguage } from "../lib/i18n";
 import { Reveal } from "./Reveal";
+import { MagneticButton } from "./MagneticButton";
 
 export const SELECT_DESTINATION_EVENT = "vdt:select-destination";
 
@@ -142,14 +143,16 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
               ))}
             </select>
           </div>
-          <button
-            type="button"
-            onClick={scrollToAnchor}
-            className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-red/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-flame/30 active:translate-y-0"
-          >
-            {t.map.cta}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          <MagneticButton>
+            <button
+              type="button"
+              onClick={scrollToAnchor}
+              className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-red/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-flame/30 active:translate-y-0"
+            >
+              {t.map.cta}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </button>
+          </MagneticButton>
         </Reveal>
 
         {/* Karte */}
