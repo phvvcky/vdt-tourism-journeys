@@ -11,7 +11,7 @@ export function Faq() {
     <section className="bg-background py-16 sm:py-20">
       <div className="container-vdt grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <Reveal>
-          <p className="eyebrow text-vdt-red">FAQ</p>
+          <p className="eyebrow text-vdt-blue">FAQ</p>
           <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
             {t.faq.title}
           </h2>
@@ -29,11 +29,11 @@ export function Faq() {
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full cursor-pointer list-none items-center justify-between gap-4 text-left font-heading text-base font-semibold text-card-foreground transition-colors hover:text-vdt-red"
+                  className="flex w-full cursor-pointer list-none items-center justify-between gap-4 text-left font-heading text-base font-semibold text-card-foreground transition-colors hover:text-vdt-blue"
                 >
                   {item.q}
                   <ChevronDown
-                    className={`h-4 w-4 shrink-0 text-vdt-red transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    className={`h-4 w-4 shrink-0 text-vdt-blue transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
                 <div

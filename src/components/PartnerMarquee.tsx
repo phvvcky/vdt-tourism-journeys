@@ -44,7 +44,7 @@ export function PartnerMarquee() {
             key={item}
             className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold tracking-wide text-muted-foreground"
           >
-            <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-vdt-red" />
+            <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-vdt-blue" />
             {item}
           </span>
         ))}

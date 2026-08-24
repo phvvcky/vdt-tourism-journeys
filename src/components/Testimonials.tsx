@@ -32,7 +32,7 @@ function Stars({ count }: { count: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
-          className={`h-3.5 w-3.5 ${i < count ? "fill-vdt-gold text-vdt-gold" : "fill-transparent text-border"}`}
+          className={`h-3.5 w-3.5 ${i < count ? "fill-vdt-amber text-vdt-amber" : "fill-transparent text-border"}`}
         />
       ))}
     </div>
@@ -50,7 +50,7 @@ export function Testimonials() {
       <div className="container-vdt">
         <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
-            <p className="eyebrow inline-flex items-center gap-2 text-vdt-red">
+            <p className="eyebrow inline-flex items-center gap-2 text-vdt-blue">
               <GoogleLogo className="h-4 w-4" />
               VDT Touristik
             </p>
@@ -82,7 +82,7 @@ export function Testimonials() {
             <Reveal
               key={item.name}
               delay={i * 80}
-              className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-vdt-gold-dark/40 hover:shadow-xl hover:shadow-vdt-gold/10"
+              className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-vdt-amber-dark/40 hover:shadow-xl hover:shadow-vdt-amber/10"
             >
               <div className="flex items-center justify-between">
                 <Stars count={item.rating} />

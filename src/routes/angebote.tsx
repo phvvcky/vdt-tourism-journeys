@@ -14,7 +14,10 @@ export const Route = createFileRoute("/angebote")({
         content:
           "Beliebte Flugstrecken ab Berlin nach Hanoi, Ho-Chi-Minh-Stadt, Da Nang und weiteren Asien-Zielen – mit Airline, Umsteigezeit und ab-Preis.",
       },
-      { property: "og:title", content: "Flugziele & beliebte Strecken – VDT Touristik GmbH Berlin" },
+      {
+        property: "og:title",
+        content: "Flugziele & beliebte Strecken – VDT Touristik GmbH Berlin",
+      },
       {
         property: "og:description",
         content:
@@ -41,13 +44,15 @@ function FlightRoutesPage() {
             <ArrowLeft className="h-4 w-4" />
             {t.common.back}
           </Link>
-          <p className="eyebrow mt-6 text-vdt-gold">Berlin (BER)</p>
-          <h1 className="mt-2 font-heading text-3xl font-extrabold sm:text-4xl">{t.routes.title}</h1>
+          <p className="eyebrow mt-6 text-vdt-amber">Berlin (BER)</p>
+          <h1 className="mt-2 font-heading text-3xl font-extrabold sm:text-4xl">
+            {t.routes.title}
+          </h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/70">{t.routes.pageLead}</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={`tel:${COMPANY.phoneHref}`}
-              className="inline-flex items-center gap-2 rounded-md bg-vdt-red px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-vdt-red/85"
+              className="inline-flex items-center gap-2 rounded-md bg-vdt-blue px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-vdt-blue/85"
             >
               <Phone className="h-4 w-4" />
               {COMPANY.phone}
@@ -56,7 +61,7 @@ function FlightRoutesPage() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center gap-2 rounded-md bg-vdt-gold px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+              className="inline-flex items-center gap-2 rounded-md bg-vdt-amber px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-colors hover:bg-vdt-amber-dark"
             >
               <MessageCircle className="h-4 w-4" />
               {t.common.whatsapp}
@@ -65,7 +70,7 @@ function FlightRoutesPage() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="bg-secondary py-12 sm:py-16">
         <div className="container-vdt">
           <FlightGrid />
         </div>

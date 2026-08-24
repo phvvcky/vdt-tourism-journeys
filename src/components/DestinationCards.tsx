@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ArrowLeft, ArrowRight, Plane } from "lucide-react";
+import { ArrowLeft, ArrowRight, Luggage } from "lucide-react";
 import { FLIGHTS } from "../lib/flight-data";
 import { useLanguage } from "../lib/i18n";
 import { Reveal } from "./Reveal";
@@ -8,11 +8,11 @@ import { SELECT_DESTINATION_EVENT } from "./RouteMap";
 // Gradient-Paare statt Stockfotos: so bleibt jede Karte visuell konsistent,
 // ohne ein Zielfoto zu zeigen, das nicht wirklich die jeweilige Stadt ist.
 const CARD_THEMES = [
-  { from: "oklch(0.535 0.215 24)", to: "oklch(0.665 0.19 45)" },
-  { from: "oklch(0.375 0.16 25)", to: "oklch(0.535 0.215 24)" },
-  { from: "oklch(0.42 0.1 220)", to: "oklch(0.56 0.13 200)" },
-  { from: "oklch(0.48 0.14 265)", to: "oklch(0.62 0.15 300)" },
-  { from: "oklch(0.62 0.14 76)", to: "oklch(0.8 0.15 84)" },
+  { from: "oklch(0.42 0.14 255)", to: "oklch(0.6 0.14 220)" },
+  { from: "oklch(0.28 0.11 258)", to: "oklch(0.42 0.14 255)" },
+  { from: "oklch(0.38 0.09 235)", to: "oklch(0.52 0.12 195)" },
+  { from: "oklch(0.46 0.13 268)", to: "oklch(0.6 0.14 300)" },
+  { from: "oklch(0.68 0.15 60)", to: "oklch(0.78 0.15 70)" },
   { from: "oklch(0.44 0.11 165)", to: "oklch(0.58 0.13 155)" },
 ];
 
@@ -82,7 +82,7 @@ export function DestinationCards() {
       <div className="container-vdt">
         <Reveal className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
-            <p className="eyebrow text-vdt-red">{t.map.chooseDestination}</p>
+            <p className="eyebrow text-vdt-blue">{t.map.chooseDestination}</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
               {t.destinationCards.title}
             </h2>
@@ -93,7 +93,7 @@ export function DestinationCards() {
               type="button"
               aria-label="Zurück"
               onClick={() => scrollByCard(-1)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-all hover:-translate-y-0.5 hover:border-vdt-red/40 hover:text-vdt-red hover:shadow-md"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-all hover:-translate-y-0.5 hover:border-vdt-blue/40 hover:text-vdt-blue hover:shadow-md"
             >
               <ArrowLeft className="h-4 w-4" />
             </button>
@@ -101,7 +101,7 @@ export function DestinationCards() {
               type="button"
               aria-label="Weiter"
               onClick={() => scrollByCard(1)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-all hover:-translate-y-0.5 hover:border-vdt-red/40 hover:text-vdt-red hover:shadow-md"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-all hover:-translate-y-0.5 hover:border-vdt-blue/40 hover:text-vdt-blue hover:shadow-md"
             >
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -109,6 +109,10 @@ export function DestinationCards() {
         </Reveal>
       </div>
 
+      {/* Gepäckband-Rahmen: die Zielkarten "gleiten" wie Koffer über eine Rollenbahn */}
+      <div className="container-vdt">
+        <div className="h-2 rounded-full conveyor-stripes opacity-60" aria-hidden="true" />
+      </div>
       <Reveal delay={100} className="container-vdt">
         <div
           ref={scrollerRef}
@@ -117,7 +121,7 @@ export function DestinationCards() {
           onPointerUp={endDrag}
           onPointerLeave={endDrag}
           onClickCapture={onClickCapture}
-          className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto pb-2 active:cursor-grabbing"
+          className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto py-3 active:cursor-grabbing"
         >
           {FLIGHTS.map((f, i) => {
             const theme = CARD_THEMES[i % CARD_THEMES.length]!;
@@ -139,7 +143,7 @@ export function DestinationCards() {
                   </span>
                 )}
                 <div className="relative flex h-44 flex-col justify-end p-5 text-primary-foreground">
-                  <Plane className="mb-2 h-5 w-5 rotate-45 opacity-80 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <Luggage className="mb-2 h-5 w-5 opacity-80 transition-transform duration-300 group-hover:-translate-y-1" />
                   <h3 className="font-heading text-xl font-bold">{t.routes.cities[f.id]}</h3>
                   <p className="mt-1 line-clamp-2 text-xs text-primary-foreground/80">
                     {t.routes.teasers[f.id]}
@@ -156,6 +160,9 @@ export function DestinationCards() {
           })}
         </div>
       </Reveal>
+      <div className="container-vdt">
+        <div className="h-2 rounded-full conveyor-stripes opacity-60" aria-hidden="true" />
+      </div>
     </section>
   );
 }

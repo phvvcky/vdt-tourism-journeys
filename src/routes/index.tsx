@@ -106,21 +106,21 @@ function HeroSection() {
             fetchPriority="high"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-vdt-ink via-vdt-ink/90 to-vdt-red-dark/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-vdt-ink via-vdt-ink/90 to-vdt-blue-dark/60" />
       </div>
 
       {/* dekorative Glow-Blobs für modernen Tiefeneffekt */}
-      <div className="pointer-events-none absolute -left-20 top-0 h-96 w-96 animate-float-a rounded-full bg-vdt-red/30 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 top-1/3 h-[28rem] w-[28rem] animate-float-b rounded-full bg-vdt-gold/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 top-0 h-96 w-96 animate-float-a rounded-full bg-vdt-blue/30 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-1/3 h-[28rem] w-[28rem] animate-float-b rounded-full bg-vdt-amber/20 blur-3xl" />
       <div
-        className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 animate-float-a rounded-full bg-vdt-flame/20 blur-3xl"
+        className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 animate-float-a rounded-full bg-vdt-sky/20 blur-3xl"
         style={{ animationDelay: "3s" }}
       />
 
       <div className="container-vdt relative py-24 sm:py-32 lg:py-40">
         <Reveal as="div" className="max-w-2xl text-primary-foreground">
-          <p className="eyebrow inline-flex items-center gap-2 text-vdt-gold">
-            <span className="h-px w-8 bg-vdt-gold" />
+          <p className="eyebrow inline-flex items-center gap-2 text-vdt-amber">
+            <span className="h-px w-8 bg-vdt-amber" />
             {t.hero.badge}
           </p>
           <KineticHeadline
@@ -132,7 +132,7 @@ function HeroSection() {
             <MagneticButton>
               <a
                 href={`tel:${COMPANY.phoneHref}`}
-                className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-red/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-flame/30 active:translate-y-0"
+                className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-blue/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-sky/30 active:translate-y-0"
               >
                 <Phone className="h-4 w-4 transition-transform group-hover:rotate-12" />
                 {COMPANY.phone}
@@ -143,7 +143,7 @@ function HeroSection() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-gold px-5 py-3 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-gold-dark hover:shadow-lg hover:shadow-vdt-gold/30 active:translate-y-0"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-amber px-5 py-3 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-amber-dark hover:shadow-lg hover:shadow-vdt-amber/30 active:translate-y-0"
               >
                 <MessageCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
                 {t.common.whatsapp}
@@ -171,7 +171,7 @@ function HighlightsSection() {
     <section className="bg-background py-16 sm:py-20">
       <div className="container-vdt">
         <Reveal className="mb-10 max-w-2xl">
-          <p className="eyebrow text-vdt-red">VDT Touristik</p>
+          <p className="eyebrow text-vdt-blue">VDT Touristik</p>
           <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
             {t.why.title}
           </h2>
@@ -184,9 +184,9 @@ function HighlightsSection() {
               <Reveal
                 key={item.title}
                 delay={i * 90}
-                className="group rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-vdt-red/30 hover:shadow-xl hover:shadow-vdt-red/10"
+                className="group rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-vdt-blue/30 hover:shadow-xl hover:shadow-vdt-blue/10"
               >
-                <div className="mb-4 inline-flex rounded-lg bg-vdt-red-light p-3 text-vdt-red transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <div className="mb-4 inline-flex rounded-lg bg-vdt-blue-light p-3 text-vdt-blue transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-semibold text-card-foreground">
@@ -209,7 +209,7 @@ function RoutesSection() {
       <div className="container-vdt">
         <Reveal className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
-            <p className="eyebrow text-vdt-red">Berlin (BER)</p>
+            <p className="eyebrow text-vdt-blue">Berlin (BER)</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
               {t.routes.title}
             </h2>
@@ -217,7 +217,7 @@ function RoutesSection() {
           </div>
           <Link
             to="/angebote"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-vdt-red hover:underline"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-vdt-blue hover:underline"
           >
             {t.common.allDestinations}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -235,7 +235,7 @@ function PartnerSection() {
     <section className="border-y border-border bg-card py-12">
       <div className="container-vdt grid items-center gap-8 lg:grid-cols-2">
         <Reveal>
-          <p className="eyebrow text-vdt-red">Partner</p>
+          <p className="eyebrow text-vdt-blue">Partner</p>
           <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
             {t.company.partnerTitle}
           </h2>
@@ -262,7 +262,7 @@ function ContactPreviewSection() {
       <div className="container-vdt">
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal>
-            <p className="eyebrow text-vdt-red">{t.footer.contact}</p>
+            <p className="eyebrow text-vdt-blue">{t.footer.contact}</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
               {t.contactPreview.title}
             </h2>
@@ -271,7 +271,7 @@ function ContactPreviewSection() {
             <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href={`tel:${COMPANY.phoneHref}`}
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-ink px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-red hover:shadow-lg hover:shadow-vdt-red/25"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-ink px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-blue hover:shadow-lg hover:shadow-vdt-blue/25"
               >
                 <Phone className="h-4 w-4 transition-transform group-hover:rotate-12" />
                 {COMPANY.phone}
@@ -280,7 +280,7 @@ function ContactPreviewSection() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-gold px-5 py-3 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-gold-dark hover:shadow-lg hover:shadow-vdt-gold/25"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-vdt-amber px-5 py-3 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-amber-dark hover:shadow-lg hover:shadow-vdt-amber/25"
               >
                 <MessageCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
                 {t.common.whatsapp}
@@ -289,7 +289,7 @@ function ContactPreviewSection() {
 
             <div className="mt-8 space-y-4">
               <div className="group flex items-start gap-3">
-                <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red transition-transform duration-300 group-hover:scale-110">
+                <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue transition-transform duration-300 group-hover:scale-110">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
@@ -299,14 +299,14 @@ function ContactPreviewSection() {
                 </div>
               </div>
               <div className="group flex items-start gap-3">
-                <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red transition-transform duration-300 group-hover:scale-110">
+                <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue transition-transform duration-300 group-hover:scale-110">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
                   <p className="font-medium text-foreground">{t.contactPreview.email}</p>
                   <a
                     href={`mailto:${COMPANY.email}`}
-                    className="text-sm text-muted-foreground hover:text-vdt-red"
+                    className="text-sm text-muted-foreground hover:text-vdt-blue"
                   >
                     {COMPANY.email}
                   </a>
@@ -317,7 +317,7 @@ function ContactPreviewSection() {
             <div className="mt-8">
               <Link
                 to="/kontakt"
-                className="group inline-flex items-center justify-center gap-2 text-sm font-semibold text-vdt-red hover:underline"
+                className="group inline-flex items-center justify-center gap-2 text-sm font-semibold text-vdt-blue hover:underline"
               >
                 {t.contactPreview.cta}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -326,7 +326,7 @@ function ContactPreviewSection() {
           </Reveal>
           <Reveal
             delay={120}
-            className="rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-vdt-red/10"
+            className="rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-vdt-blue/10"
           >
             <h3 className="font-heading text-xl font-semibold text-card-foreground">
               {t.contactPreview.hoursTitle}

@@ -5,14 +5,21 @@ import { COMPANY, WHATSAPP_URL } from "../lib/company";
 import iataLogo from "../assets/iata-accredited-agent.png";
 import vnAirlines from "../assets/vietnam-airlines.jpg";
 
-
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
     meta: [
       { title: "Kontakt – VDT Touristik GmbH Berlin" },
-      { name: "description", content: "Kontaktieren Sie VDT Touristik GmbH in Berlin für Ihr Flugticket. Adresse, Telefon, Öffnungszeiten und Kontaktformular." },
+      {
+        name: "description",
+        content:
+          "Kontaktieren Sie VDT Touristik GmbH in Berlin für Ihr Flugticket. Adresse, Telefon, Öffnungszeiten und Kontaktformular.",
+      },
       { property: "og:title", content: "Kontakt – VDT Touristik GmbH Berlin" },
-      { property: "og:description", content: "Kontaktieren Sie VDT Touristik GmbH in Berlin für Ihr Flugticket. Adresse, Telefon, Öffnungszeiten und Kontaktformular." },
+      {
+        property: "og:description",
+        content:
+          "Kontaktieren Sie VDT Touristik GmbH in Berlin für Ihr Flugticket. Adresse, Telefon, Öffnungszeiten und Kontaktformular.",
+      },
       { property: "og:url", content: "/kontakt" },
     ],
     links: [{ rel: "canonical", href: "/kontakt" }],
@@ -27,7 +34,10 @@ function ContactPage() {
     <div className="bg-background">
       <section className="border-b border-border bg-vdt-sand py-12 sm:py-16">
         <div className="container-vdt">
-          <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" />
             {t.common.back}
           </Link>
@@ -43,10 +53,12 @@ function ContactPage() {
           <div className="grid gap-10 lg:grid-cols-3">
             <div className="space-y-6 lg:col-span-1">
               <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                <h2 className="font-heading text-xl font-semibold text-card-foreground">{t.contact.dataTitle}</h2>
+                <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                  {t.contact.dataTitle}
+                </h2>
                 <div className="mt-4 space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
+                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
@@ -59,7 +71,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
+                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
@@ -67,7 +79,7 @@ function ContactPage() {
                       <div className="mt-1 flex flex-wrap items-center gap-2">
                         <a
                           href={`tel:${COMPANY.phoneHref}`}
-                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-ink px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-vdt-red"
+                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-ink px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-vdt-blue"
                         >
                           <Phone className="h-3.5 w-3.5" />
                           {COMPANY.phone}
@@ -76,7 +88,7 @@ function ContactPage() {
                           href={WHATSAPP_URL}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-gold px-3 py-1.5 text-xs font-semibold text-accent-foreground transition-colors hover:bg-vdt-gold-dark"
+                          className="inline-flex items-center gap-1.5 rounded-md bg-vdt-amber px-3 py-1.5 text-xs font-semibold text-accent-foreground transition-colors hover:bg-vdt-amber-dark"
                         >
                           <MessageCircle className="h-3.5 w-3.5" />
                           {t.common.whatsapp}
@@ -86,18 +98,21 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
+                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="font-medium text-foreground">{t.contactPreview.email}</p>
-                      <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted-foreground hover:text-primary">
+                      <a
+                        href={`mailto:${COMPANY.email}`}
+                        className="text-sm text-muted-foreground hover:text-primary"
+                      >
                         {COMPANY.email}
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
+                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
                       <Clock className="h-5 w-5" />
                     </div>
                     <div>
@@ -107,7 +122,7 @@ function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-vdt-red-light p-2 text-vdt-red">
+                    <div className="rounded-lg bg-vdt-blue-light p-2 text-vdt-blue">
                       <Landmark className="h-5 w-5" />
                     </div>
                     <div>
@@ -121,16 +136,25 @@ function ContactPage() {
               </div>
 
               <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                <h3 className="font-heading text-lg font-semibold text-card-foreground">{t.company.partnerTitle}</h3>
+                <h3 className="font-heading text-lg font-semibold text-card-foreground">
+                  {t.company.partnerTitle}
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">{t.company.partnerLead}</p>
                 <div className="mt-4 flex flex-wrap items-center gap-4">
-                  <img src={vnAirlines} alt="Vietnam Airlines" className="h-10 w-auto" loading="lazy" />
+                  <img
+                    src={vnAirlines}
+                    alt="Vietnam Airlines"
+                    className="h-10 w-auto"
+                    loading="lazy"
+                  />
                   <img src={iataLogo} alt={t.common.iata} className="h-10 w-auto" loading="lazy" />
                 </div>
               </div>
 
               <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                <h3 className="font-heading text-lg font-semibold text-card-foreground">{t.contact.iataTitle}</h3>
+                <h3 className="font-heading text-lg font-semibold text-card-foreground">
+                  {t.contact.iataTitle}
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">{t.contact.iataText}</p>
                 <p className="mt-3 text-xs text-muted-foreground">
                   {t.company.taxNo} {COMPANY.taxNumber} · {COMPANY.register}
@@ -138,9 +162,10 @@ function ContactPage() {
               </div>
             </div>
 
-
             <div className="rounded-xl border border-border bg-card p-6 shadow-sm lg:col-span-2">
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">{t.contact.formTitle}</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                {t.contact.formTitle}
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">{t.contact.formLead}</p>
               <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid gap-4 sm:grid-cols-2">

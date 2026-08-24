@@ -223,7 +223,7 @@ function Header() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className="group inline-flex items-center gap-1.5 rounded-md bg-vdt-gold px-3 py-1.5 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-gold-dark hover:shadow-md hover:shadow-vdt-gold/30"
+              className="group inline-flex items-center gap-1.5 rounded-md bg-vdt-amber px-3 py-1.5 text-sm font-semibold text-accent-foreground transition-all hover:-translate-y-0.5 hover:bg-vdt-amber-dark hover:shadow-md hover:shadow-vdt-amber/30"
             >
               <MessageCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
               {t.common.whatsapp}
@@ -270,9 +270,9 @@ function CopyablePhone() {
         href={`tel:${COMPANY.phoneHref}`}
         onClick={handleClick}
         title={t.common.copyPhone}
-        className="group inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-vdt-red"
+        className="group inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-vdt-blue"
       >
-        <Phone className="h-4 w-4 text-vdt-red transition-transform group-hover:rotate-12" />
+        <Phone className="h-4 w-4 text-vdt-blue transition-transform group-hover:rotate-12" />
         {COMPANY.phone}
       </a>
       <span
@@ -281,7 +281,7 @@ function CopyablePhone() {
         }`}
       >
         <span className="inline-flex items-center gap-1">
-          <Check className="h-3 w-3 text-vdt-gold" />
+          <Check className="h-3 w-3 text-vdt-amber" />
           {t.common.phoneCopied}
         </span>
       </span>
@@ -293,7 +293,7 @@ function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-vdt-gold/30 bg-vdt-ink text-primary-foreground">
+    <footer className="border-t border-vdt-amber/30 bg-vdt-ink text-primary-foreground">
       <div className="container-vdt py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>

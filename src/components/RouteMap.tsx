@@ -88,12 +88,12 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
       className="relative scroll-mt-20 overflow-hidden gradient-ink py-16 text-primary-foreground sm:py-20"
     >
       {/* dekorative Glow-Blobs */}
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 animate-float-a rounded-full bg-vdt-red/25 blur-3xl" />
-      <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 animate-float-b rounded-full bg-vdt-gold/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 animate-float-a rounded-full bg-vdt-blue/25 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 animate-float-b rounded-full bg-vdt-amber/20 blur-3xl" />
 
       <div className="container-vdt relative">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow text-vdt-gold">{origin.label}</p>
+          <p className="eyebrow text-vdt-amber">{origin.label}</p>
           <h2 className="mt-2 font-heading text-3xl font-bold sm:text-4xl">{t.map.title}</h2>
           <p className="mt-4 text-primary-foreground/70">{t.map.lead}</p>
         </Reveal>
@@ -114,7 +114,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
               id="map-from"
               value={originCode}
               onChange={(e) => setOriginCode(e.target.value)}
-              className="mt-1 w-full rounded-md border border-primary-foreground/20 bg-vdt-ink-soft px-3 py-2 text-sm text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-vdt-gold"
+              className="mt-1 w-full rounded-md border border-primary-foreground/20 bg-vdt-ink-soft px-3 py-2 text-sm text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-vdt-amber"
             >
               {ORIGINS.map((o) => (
                 <option key={o.code} value={o.code}>
@@ -134,7 +134,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
               id="map-to"
               value={selected}
               onChange={(e) => setSelected(e.target.value)}
-              className="mt-1 w-full rounded-md border border-primary-foreground/20 bg-vdt-ink-soft px-3 py-2 text-sm text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-vdt-gold"
+              className="mt-1 w-full rounded-md border border-primary-foreground/20 bg-vdt-ink-soft px-3 py-2 text-sm text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-vdt-amber"
             >
               {FLIGHTS.map((f) => (
                 <option key={f.id} value={f.id}>
@@ -147,7 +147,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
             <button
               type="button"
               onClick={scrollToAnchor}
-              className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-red/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-flame/30 active:translate-y-0"
+              className="group inline-flex items-center justify-center gap-2 rounded-md gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-vdt-blue/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-vdt-sky/30 active:translate-y-0"
             >
               {t.map.cta}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -164,15 +164,15 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
           <svg viewBox="150 60 780 240" className="w-full" role="img" aria-label={t.map.title}>
             <defs>
               <radialGradient id="origin-glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="oklch(0.985 0.008 80)" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="oklch(0.985 0.008 80)" stopOpacity="0" />
+                <stop offset="0%" stopColor="oklch(0.985 0.006 250)" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="oklch(0.985 0.006 250)" stopOpacity="0" />
               </radialGradient>
             </defs>
 
             <path
               d={WORLD_LAND_PATH}
-              fill="oklch(0.305 0.018 62)"
-              stroke="oklch(0.4 0.02 62)"
+              fill="oklch(0.28 0.025 255)"
+              stroke="oklch(0.38 0.03 255)"
               strokeWidth="0.4"
             />
 
@@ -184,7 +184,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                   <path
                     d={arc(origin.x, origin.y, f.x, f.y)}
                     fill="none"
-                    stroke={isActive ? "oklch(0.8 0.15 84)" : "oklch(0.535 0.215 24)"}
+                    stroke={isActive ? "oklch(0.78 0.15 70)" : "oklch(0.55 0.16 248)"}
                     strokeWidth={isActive ? 2.2 : 1.1}
                     strokeLinecap="round"
                     opacity={isActive ? 1 : 0.6}
@@ -202,7 +202,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                     <path
                       d={arc(origin.x, origin.y, f.x, f.y)}
                       fill="none"
-                      stroke="oklch(0.985 0.008 80)"
+                      stroke="oklch(0.985 0.006 250)"
                       strokeWidth="1.4"
                       strokeLinecap="round"
                       strokeDasharray="1 7"
@@ -214,7 +214,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                     cx={f.x}
                     cy={f.y}
                     r={isActive ? 4.5 : 2.6}
-                    fill={isActive ? "oklch(0.8 0.15 84)" : "oklch(0.535 0.215 24)"}
+                    fill={isActive ? "oklch(0.78 0.15 70)" : "oklch(0.55 0.16 248)"}
                     style={{
                       transition: "r 0.35s cubic-bezier(0.34,1.56,0.64,1), fill 0.35s ease",
                     }}
@@ -240,7 +240,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                       y={f.y + (f.labelDy ?? 3)}
                       textAnchor={f.labelAnchor ?? "start"}
                       fontSize="7.5"
-                      fill="oklch(0.8 0.15 84)"
+                      fill="oklch(0.78 0.15 70)"
                       className="pointer-events-none font-semibold"
                     >
                       {t.routes.cities[f.id]}
@@ -267,13 +267,13 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
               className="animate-pulse-ring"
               style={{ transformOrigin: `${origin.x}px ${origin.y}px`, animationDelay: "1.1s" }}
             />
-            <circle cx={origin.x} cy={origin.y} r="4.5" fill="oklch(0.985 0.008 80)" />
+            <circle cx={origin.x} cy={origin.y} r="4.5" fill="oklch(0.985 0.006 250)" />
             <text
               x={origin.x - 4}
               y={origin.y - 8}
               fontSize="8"
               textAnchor="end"
-              fill="oklch(0.985 0.008 80)"
+              fill="oklch(0.985 0.006 250)"
               className="font-semibold"
             >
               {originCity}
@@ -283,7 +283,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
           {/* Tooltip – bleibt im DOM und faded/scaled sanft statt abrupt zu erscheinen */}
           {tooltipTarget && (
             <div
-              className="pointer-events-none absolute z-10 w-52 -translate-x-1/2 rounded-lg border border-vdt-gold/40 bg-vdt-ink p-3 shadow-xl transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+              className="pointer-events-none absolute z-10 w-52 -translate-x-1/2 rounded-lg border border-vdt-amber/40 bg-vdt-ink p-3 shadow-xl transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
               style={{
                 left: `${((tooltipTarget.x - 150) / 780) * 100}%`,
                 top: `${((tooltipTarget.y - 60) / 240) * 100}%`,
@@ -302,7 +302,7 @@ export function RouteMap({ anchorId }: { anchorId: string }) {
                   ? t.common.nonstop
                   : `${t.common.via} ${tooltipTarget.via} · ${formatLayover(tooltipTarget.layoverMin, t.common.hourShort, t.common.minuteShort)}`}
               </p>
-              <p className="mt-1 font-heading text-sm font-bold text-vdt-gold">
+              <p className="mt-1 font-heading text-sm font-bold text-vdt-amber">
                 {t.common.from} {tooltipTarget.price} € {t.common.oneWay}
               </p>
             </div>
