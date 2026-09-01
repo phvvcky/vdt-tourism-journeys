@@ -5,8 +5,9 @@ import { useLanguage } from "../lib/i18n";
 import { Reveal } from "./Reveal";
 import { SELECT_DESTINATION_EVENT } from "./RouteMap";
 
-// Gradient-Paare statt Stockfotos: so bleibt jede Karte visuell konsistent,
-// ohne ein Zielfoto zu zeigen, das nicht wirklich die jeweilige Stadt ist.
+// Gradient-Paare als Kartenhintergrund. Sobald ein Ziel ein echtes Bild hat (Flight.image,
+// siehe src/assets/destinations/README.md), wird das Bild halbtransparent unter dem Gradient
+// eingeblendet (Duotone-Look) statt des reinen Farbverlaufs.
 const CARD_THEMES = [
   { from: "oklch(0.42 0.14 255)", to: "oklch(0.6 0.14 220)" },
   { from: "oklch(0.28 0.11 258)", to: "oklch(0.42 0.14 255)" },
@@ -15,6 +16,12 @@ const CARD_THEMES = [
   { from: "oklch(0.68 0.15 60)", to: "oklch(0.78 0.15 70)" },
   { from: "oklch(0.44 0.11 165)", to: "oklch(0.58 0.13 155)" },
 ];
+
+// Fügt dem Ende eines "oklch(...)"-Strings eine Alpha-Komponente hinzu, z.B. für den
+// halbtransparenten Gradient-Überzug auf einem Zielbild.
+function withAlpha(oklch: string, alpha: number) {
+  return oklch.replace(/\)$/, ` / ${alpha})`);
+}
 
 export function DestinationCards() {
   const { t } = useLanguage();
@@ -132,11 +139,31 @@ export function DestinationCards() {
                 data-card
                 onClick={() => selectDestination(f.id)}
                 className="group relative flex w-64 shrink-0 snap-start flex-col overflow-hidden rounded-2xl text-left shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl sm:w-72"
-                style={{ background: `linear-gradient(150deg, ${theme.from}, ${theme.to})` }}
+                style={
+                  f.image
+                    ? undefined
+                    : { background: `linear-gradient(150deg, ${theme.from}, ${theme.to})` }
+                }
               >
-                <span className="pointer-events-none absolute -right-3 -top-8 select-none font-heading text-8xl font-black text-white/10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-                  {f.iata}
-                </span>
+                {f.image ? (
+                  <>
+                    <img
+                      src={f.image}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage: `linear-gradient(150deg, ${withAlpha(theme.from, 0.88)}, ${withAlpha(theme.to, 0.68)})`,
+                      }}
+                    />
+                  </>
+                ) : (
+                  <span className="pointer-events-none absolute -right-3 -top-8 select-none font-heading text-8xl font-black text-white/10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    {f.iata}
+                  </span>
+                )}
                 {f.top && (
                   <span className="absolute left-4 top-4 rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground backdrop-blur-sm">
                     {t.common.topRoute}

@@ -18,6 +18,10 @@ export type Flight = {
   labelDx?: number;
   labelDy?: number;
   labelAnchor?: "start" | "end";
+  // Optionales Stadtbild für die Zielkarten-Galerie (DestinationCards). Noch nicht befüllt —
+  // siehe src/assets/destinations/README.md, wie ein Bild ergänzt wird. Ohne Bild fällt die
+  // Karte automatisch auf den reinen Gradient-Look zurück.
+  image?: string;
 };
 
 export type Origin = { code: string; label: string; x: number; y: number };
