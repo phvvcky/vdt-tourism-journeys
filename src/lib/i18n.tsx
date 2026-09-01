@@ -134,8 +134,8 @@ const de = {
   testimonials: {
     title: "Google-Bewertungen",
     lead: "Ausgewählte Stimmen zufriedener Kundinnen und Kunden. (Platzhalterinhalte – werden durch echte Google-Bewertungen ersetzt)",
-    ratingSummary: "4,8 von 5",
-    ratingCount: "128 Bewertungen auf Google",
+    reviewCta: "Jetzt bei Google bewerten",
+    reviewIncentive: "und 10 € Rabatt auf Ihre nächste Buchung sichern",
     filterNote: "Gefiltert: nur 4- und 5-Sterne-Bewertungen",
     items: [
       {
@@ -225,7 +225,11 @@ const de = {
     subjectPlaceholder: "Welche Strecke suchen Sie?",
     message: "Nachricht",
     messagePlaceholder: "Reiseziel, Reisedaten und Anzahl der Personen…",
+    consentPre: "Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß unserer",
+    consentLink: "Datenschutzerklärung",
+    consentPost: "zu.",
     submit: "Nachricht senden",
+    submitNote: "Öffnet Ihr E-Mail-Programm mit vorausgefüllter Nachricht.",
   },
   company: {
     bankTitle: "Bankverbindung",
@@ -368,8 +372,8 @@ const vi: Dict = {
   testimonials: {
     title: "Đánh giá trên Google",
     lead: "Một số cảm nhận nổi bật từ khách hàng. (Nội dung mẫu – sẽ thay bằng đánh giá Google thật)",
-    ratingSummary: "4,8/5",
-    ratingCount: "128 đánh giá trên Google",
+    reviewCta: "Đánh giá ngay trên Google",
+    reviewIncentive: "và nhận ưu đãi giảm 10 € cho lần đặt vé tiếp theo",
     filterNote: "Đã lọc: chỉ hiển thị đánh giá 4–5 sao",
     items: [
       {
@@ -458,7 +462,11 @@ const vi: Dict = {
     subjectPlaceholder: "Bạn cần chặng bay nào?",
     message: "Nội dung",
     messagePlaceholder: "Điểm đến, ngày bay và số lượng khách…",
+    consentPre: "Bằng cách gửi, bạn đồng ý với việc xử lý dữ liệu theo",
+    consentLink: "Chính sách bảo mật",
+    consentPost: "của chúng tôi.",
     submit: "Gửi tin nhắn",
+    submitNote: "Sẽ mở ứng dụng email của bạn với nội dung đã điền sẵn.",
   },
   company: {
     bankTitle: "Thông tin ngân hàng",
@@ -600,8 +608,8 @@ const en: Dict = {
   testimonials: {
     title: "Google reviews",
     lead: "A selection of feedback from happy customers. (Placeholder content – will be replaced with real Google reviews)",
-    ratingSummary: "4.8 out of 5",
-    ratingCount: "128 reviews on Google",
+    reviewCta: "Review us on Google",
+    reviewIncentive: "and get 10 € off your next booking",
     filterNote: "Filtered: showing 4- and 5-star reviews only",
     items: [
       {
@@ -689,7 +697,11 @@ const en: Dict = {
     subjectPlaceholder: "Which route are you looking for?",
     message: "Message",
     messagePlaceholder: "Destination, travel dates and number of passengers…",
+    consentPre: "By submitting, you agree to the processing of your data under our",
+    consentLink: "privacy policy",
+    consentPost: ".",
     submit: "Send message",
+    submitNote: "Opens your email app with the message pre-filled.",
   },
   company: {
     bankTitle: "Bank details",

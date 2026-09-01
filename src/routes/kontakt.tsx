@@ -30,6 +30,30 @@ export const Route = createFileRoute("/kontakt")({
 function ContactPage() {
   const { t } = useLanguage();
 
+  // Kein Backend/E-Mail-Dienst angebunden: öffnet stattdessen das E-Mail-Programm des Besuchers
+  // mit vorausgefüllter Nachricht an die Firmen-E-Mail. Für einen echten "stillen" Versand ohne
+  // Mail-Programm bräuchte es einen Formular-Backend-Dienst (z.B. Web3Forms, Resend) samt API-Key.
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name")?.toString().trim() ?? "";
+    const email = form.get("email")?.toString().trim() ?? "";
+    const phone = form.get("phone")?.toString().trim() ?? "";
+    const subject = form.get("subject")?.toString().trim() ?? "";
+    const message = form.get("message")?.toString().trim() ?? "";
+
+    const bodyLines = [
+      `Name: ${name}`,
+      `E-Mail: ${email}`,
+      phone ? `Telefon: ${phone}` : null,
+      "",
+      message,
+    ].filter((line): line is string => line !== null);
+
+    const mailSubject = subject || "Anfrage über die Website";
+    window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+  };
+
   return (
     <div className="bg-background">
       <section className="border-b border-border bg-vdt-sand py-12 sm:py-16">
@@ -167,7 +191,7 @@ function ContactPage() {
                 {t.contact.formTitle}
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">{t.contact.formLead}</p>
-              <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-card-foreground">
@@ -175,7 +199,9 @@ function ContactPage() {
                     </label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
+                      required
                       placeholder={t.contact.namePlaceholder}
                       className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
@@ -186,7 +212,9 @@ function ContactPage() {
                     </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
+                      required
                       placeholder={t.contact.emailPlaceholder}
                       className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
@@ -198,6 +226,7 @@ function ContactPage() {
                   </label>
                   <input
                     id="phone"
+                    name="phone"
                     type="tel"
                     placeholder="030 123 456 78"
                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
@@ -209,6 +238,7 @@ function ContactPage() {
                   </label>
                   <input
                     id="subject"
+                    name="subject"
                     type="text"
                     placeholder={t.contact.subjectPlaceholder}
                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
@@ -220,11 +250,20 @@ function ContactPage() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={5}
+                    required
                     placeholder={t.contact.messagePlaceholder}
                     className="w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
+                <p className="text-xs text-muted-foreground">
+                  {t.contact.consentPre}{" "}
+                  <Link to="/datenschutz" className="text-primary hover:underline">
+                    {t.contact.consentLink}
+                  </Link>{" "}
+                  {t.contact.consentPost}
+                </p>
                 <button
                   type="submit"
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
@@ -232,6 +271,7 @@ function ContactPage() {
                   <Send className="h-4 w-4" />
                   {t.contact.submit}
                 </button>
+                <p className="text-xs text-muted-foreground">{t.contact.submitNote}</p>
               </form>
             </div>
           </div>

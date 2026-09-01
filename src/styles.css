@@ -2,6 +2,18 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Schriften selbst gehostet (npm-Paket @fontsource) statt live von Google-Servern geladen —
+   sonst würde bei jedem Seitenaufruf die IP-Adresse der Besucher:innen an Google/USA übertragen,
+   ohne Einwilligung (bekanntes DSGVO-Abmahnthema seit dem LG-München-Urteil 2022). */
+@import "@fontsource/be-vietnam-pro/500.css";
+@import "@fontsource/be-vietnam-pro/600.css";
+@import "@fontsource/be-vietnam-pro/700.css";
+@import "@fontsource/be-vietnam-pro/800.css";
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+
 @custom-variant dark (&:is(.dark *));
 
 /*

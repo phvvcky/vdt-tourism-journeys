@@ -1,6 +1,12 @@
-import { Star } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
 import { useLanguage } from "../lib/i18n";
 import { Reveal } from "./Reveal";
+
+// TODO: durch den echten Google-Bewertungslink der Firma ersetzen (kurzer "Rezension schreiben"-Link
+// aus dem Google-Business-Profil, Format meist g.page/r/…/review). Bis dahin verlinkt der Button
+// auf eine Google-Suche nach der Firma.
+const GOOGLE_REVIEW_URL =
+  "https://www.google.com/search?q=VDT+Touristik+GmbH+Berlin+Google+Bewertung";
 
 // Kleines, framework-freies Google-"G"-Logo (offizielle Markenfarben) für den Bewertungs-Header.
 function GoogleLogo({ className = "h-5 w-5" }: { className?: string }) {
@@ -59,18 +65,21 @@ export function Testimonials() {
             </h2>
             <p className="mt-4 text-muted-foreground">{t.testimonials.lead}</p>
           </div>
-          <div className="flex shrink-0 items-center gap-3 rounded-xl border border-border bg-card px-4 py-3">
-            <GoogleLogo className="h-8 w-8" />
+          <a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="group flex shrink-0 items-center gap-3 rounded-xl border border-vdt-amber-dark/40 bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-md hover:shadow-vdt-amber/15"
+          >
+            <GoogleLogo className="h-8 w-8 transition-transform duration-300 group-hover:scale-110" />
             <div>
-              <div className="flex items-center gap-2">
-                <span className="font-heading text-lg font-bold text-card-foreground">
-                  {t.testimonials.ratingSummary}
-                </span>
-                <Stars count={5} />
-              </div>
-              <p className="text-xs text-muted-foreground">{t.testimonials.ratingCount}</p>
+              <p className="font-heading text-sm font-bold text-card-foreground">
+                {t.testimonials.reviewCta}
+              </p>
+              <p className="text-xs text-muted-foreground">{t.testimonials.reviewIncentive}</p>
             </div>
-          </div>
+            <ArrowRight className="h-4 w-4 shrink-0 text-vdt-amber-dark transition-transform group-hover:translate-x-1" />
+          </a>
         </Reveal>
 
         <p className="mt-4 text-xs font-medium text-muted-foreground">

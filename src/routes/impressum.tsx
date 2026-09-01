@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { COMPANY } from "../lib/company";
 
-
 export const Route = createFileRoute("/impressum")({
   head: () => ({
     meta: [
@@ -22,7 +21,10 @@ function ImpressumPage() {
     <div className="bg-background">
       <section className="border-b border-border bg-vdt-sand py-12 sm:py-16">
         <div className="container-vdt">
-          <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" />
             Zurück zur Startseite
           </Link>
@@ -36,7 +38,9 @@ function ImpressumPage() {
         <div className="container-vdt max-w-3xl">
           <div className="space-y-8 rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8">
             <div>
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">Angaben gemäß § 5 TMG</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                Angaben gemäß § 5 DDG
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 {COMPANY.name}
                 <br />
@@ -62,7 +66,9 @@ function ImpressumPage() {
             </div>
 
             <div>
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">Registereintrag</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                Registereintrag
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 Registergericht: Amtsgericht Charlottenburg (Berlin)
                 <br />
@@ -73,12 +79,16 @@ function ImpressumPage() {
             </div>
 
             <div>
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">Steuernummer</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                Steuernummer
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">Steuer-Nr.: {COMPANY.taxNumber}</p>
             </div>
 
             <div>
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">Bankverbindung</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                Bankverbindung
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 {COMPANY.bankName}
                 <br />
@@ -89,7 +99,9 @@ function ImpressumPage() {
             </div>
 
             <div>
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 {COMPANY.ceo}
                 <br />
@@ -101,12 +113,13 @@ function ImpressumPage() {
               </p>
             </div>
 
-
             <div>
-              <h2 className="font-heading text-xl font-semibold text-card-foreground">Streitschlichtung</h2>
+              <h2 className="font-heading text-xl font-semibold text-card-foreground">
+                Streitschlichtung
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-                {" "}
+                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS)
+                bereit:{" "}
                 <a
                   href="https://ec.europa.eu/consumers/odr"
                   target="_blank"
